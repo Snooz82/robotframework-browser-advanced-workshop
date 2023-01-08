@@ -5,7 +5,12 @@ Repository with Training material
 # Introduction
 	
 - Introduce Tatu and Rene
-- Go over the participants and ask them to introduce them.
+## Participant Introduction
+
+- [ ] Python Skills: 0-10
+- [ ] JS Skills: 0-10
+- [ ] WebTesting Skills: 0-10
+- [ ] Robot Framework Skills: 0-10
  
 # Browser Fundamentals
 
