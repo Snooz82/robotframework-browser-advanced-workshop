@@ -14,9 +14,9 @@ Repository with Training material
  
 # 1. Browser Fundamentals
 
-## 1.1 [Installation and binary structure](1.1.Installation_and_Binaries/README.MD)						(*Tatu*)
+## 1.1 [Installation and binary structure](1.1.Installation_and_Binaries/)						(*Tatu*)
 
-## 1.2 [Importing Settings](1.2.ImportSettings/README.MD) 										(*René*)
+## 1.2 [Importing Settings](1.2.ImportSettings/) 										(*René*)
 
 ## 1.3 [Logging (playwright Logs, Robot Loglevel, PW Trace)](1.3.Logging/README.MD)		(*Tatu*)
 
