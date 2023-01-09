@@ -40,3 +40,15 @@ Test with array function
     ...    all_elements=True
     Log Many    @{texts}
     Length Should Be    ${texts}    19
+
+Test as Objects
+    ${texts}=    Evaluate JavaScript    a
+    ...    elements => {
+    ...        const object = {}
+    ...        elements.filter(e => e.innerText).forEach(e => object[e.innerText] = e.href)
+    ...        return object
+    ...    }
+    ...    all_elements=True
+    Log Many     &{texts}
+    Log          ${{json.dumps($texts, indent=2)}}
+    Length Should Be    ${texts}    19
