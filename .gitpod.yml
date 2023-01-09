@@ -1,13 +1,6 @@
 tasks:
   - init: |
-      pip install robotframework
-    command: |
-      python -m pip install --upgrade pip
-      pip install -r Browser/dev-requirements.txt
-      inv deps
-      npx --yes playwright install-deps
-      inv build
-      pip install -e .
+      pip install --pre robotframework-browser
 image: gitpod/workspace-full-vnc
 ports:
   - port: 6080

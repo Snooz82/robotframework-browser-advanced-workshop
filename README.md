@@ -12,116 +12,37 @@ Repository with Training material
 - [ ] WebTesting Skills: 0-10
 - [ ] Robot Framework Skills: 0-10
  
-# Browser Fundamentals
+# 1. Browser Fundamentals
 
-## Installation and binary structure						(*Tatu*)
+## 1.1 [Installation and binary structure](1.1.Installation_and_Binaries/README.MD)						(*Tatu*)
 
-### rfbowser init
+## 1.2 [Importing Settings](1.2.ImportSettings/README.MD) 										(*René*)
 
-### where is log from installation
+## 1.3 [Logging (playwright Logs, Robot Loglevel, PW Trace)](1.3.Logging/README.MD)		(*Tatu*)
 
-### hwo to manage browser binaries in CI
+## 1.4 [Browser, Context, Page (Catalog, Switching)](1.4.Browser_Context_Page/README.MD) 			(*Tatu*)
 
-## Importing Settings 										(*Rene*)
+## 1.5 [Basic JS](1.5.BasicJS/README.MD) 									(*René*)
 
-- auto_closing_level: AutoClosingLevel = AutoClosingLevel.TEST,
-- enable_playwright_debug: bool = False,
-- enable_presenter_mode: Union[HighLightElement, bool] = False,
-- external_browser_executable: Optional[Dict[SupportedBrowsers, str]] = None,
-- jsextension: Optional[str] = None,
-- playwright_process_port: Optional[int] = None,
-- retry_assertions_for: timedelta = timedelta(seconds=1),
-- run_on_failure: str = "Take Screenshot  fail-screenshot-{index}",
-- selector_prefix: Optional[str] = None,
-- show_keyword_call_banner: Optional[bool] = None,
-- strict: bool = True,
-- timeout: timedelta = timedelta(seconds=10),
-- plugins: Optional[str] = None,
+# 2. Extending Browser
 
-## Logging (playwright Logs, Robot Loglevel, PW Trace)		(*Tatu*)
+## 2.1 [JavaScript Plugin-API](2.1.JavaScript_Plugin-API/README.MD)												(*René*)
 
-- enable_playwright_debug
-- log.html
-- Playwright trace.
+## 2.2 Python Plugin-API 										(*Tatu & René*)
 
-## Browser, Context, Page (Catalog, Switching) 			(*Tatu*)
+## 2.3 AssertionEngine											(*Tatu*)
 
-### Life cycle of 3 pillars
+## 2.4 Assertion Formatters 									(*Tatu*)
 
-### Catalog, Switching
+# 3. Browser Advanced Keywords
 
-- Catalog
-- New, Switch, Close
-- ALL/ANY & CURRENT/ACTIVE
+## 3.1. Waiting (playwright, Assertion, keywords, timeout) 		(*Tatu*)
 
-## Basic JS 									(*Rene*)
+## 3.2. Promise To 												(*René*)
 
-### Fundamentals
+## 3.3. Get Element States 										(*René*)
 
-- JS Environments: Browser vs NodeJS
-  - Playwright == NodeJS
-  - `document` & `window` == Chrome
-- Variable definition
-  - `let`: scoped to block 
-  - `var`: scoped to function
-  - `const`: not reassignable
-- Strings
-  - `"str"` & `'str'`
-  - ``` `test${var}` ```
-- Equality 
-  - `"32" == 32` > `true`
-  - `"32" === 32` > `false`
-- Async
-  - `async function`
-  - promises
-  - `await funCall`
-  - `.then`
-- function vs Lambda/Arrow-functions
-  - `function add(a, b) { return a + b; }`
-  - `const add = (a, b) => {a + b}`
-- Objects, JSON, Dictionaries
+## 3.4. Upload File (Selector or Dialog) 						(*René*)
 
-- Browser Dev Tools Console
+## 3.5. Selectors (CSS, nth, playwright possibilities) 			(*René*)
 
-- Evaluate Javascript
-
-
-# Extending Browser
-
-## JavaScript Plugin-API												(*Tatu & Rene*)
-	 Explain how it works
-	 Make an exercise
-
-## Python Plugin-API 										(*Tatu*)
-	Comes from PLC
-	Python class, inherit LibraryComponent use @keyword decorator
-	Explain how to call existing stuff from Node side
-	Make an exercise
-
-## AssertionEngine											(*Tatu*)
-	Separate python package, usefull also for other libraries
-	Automatic retry
-	Inline assertions with one keywords
-	Make an exercise  
-
-## Assertion Formatters 									(*Tatu*)
-	Allows formatting return value from node side
-	Make an exercise
-
-# Browser Advanced Keywords
-
-## Waiting (playwright, Assertion, keywords, timeout) 		(*Tatu*)
-	Not sure where this should go? 
-
-## Promise To 												(*Rene*)
-	?
-
-## Get Element States 										(*Rene*)
-	?
-	Make an exercise
-
-## Upload File (Selector or Dialog) 						(*Rene*)
-	?
-
-## Selectors (CSS, nth, playwright possibilities) 			(*Rene*)
-	Make an exercise
