@@ -1,4 +1,4 @@
-[<- Back](../)
+[<- Back](/README.md)
 
 # 1.1 Installation and binary structure						(*Tatu*)
 

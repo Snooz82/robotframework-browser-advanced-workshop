@@ -1,4 +1,4 @@
-[<- Back](../)
+[<- Back](/README.md)
 
 # 1.4 Browser, Context, Page (Catalog, Switching) 			(*Tatu*)
 

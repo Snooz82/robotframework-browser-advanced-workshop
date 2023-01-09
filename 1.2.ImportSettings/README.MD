@@ -1,4 +1,4 @@
-[<- Back](../)
+[<- Back](/README.md)
 
 # 1.2 Importing Settings 										(*Rene*)
 
