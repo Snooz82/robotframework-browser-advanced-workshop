@@ -18,15 +18,15 @@ Repository with Training material
 
 ## 1.2 [Importing Settings](1.2.ImportSettings/) 										(*René*)
 
-## 1.3 [Logging (playwright Logs, Robot Loglevel, PW Trace)](1.3.Logging/README.MD)		(*Tatu*)
+## 1.3 [Logging (playwright Logs, Robot Loglevel, PW Trace)](1.3.Logging/)		(*Tatu*)
 
-## 1.4 [Browser, Context, Page (Catalog, Switching)](1.4.Browser_Context_Page/README.MD) 			(*Tatu*)
+## 1.4 [Browser, Context, Page (Catalog, Switching)](1.4.Browser_Context_Page/) 			(*Tatu*)
 
-## 1.5 [Basic JS](1.5.BasicJS/README.MD) 									(*René*)
+## 1.5 [Basic JS](1.5.BasicJS/) 									(*René*)
 
 # 2. Extending Browser
 
-## 2.1 [JavaScript Plugin-API](2.1.JavaScript_Plugin-API/README.MD)												(*René*)
+## 2.1 [JavaScript Plugin-API](2.1.JavaScript_Plugin-API/)												(*René*)
 
 ## 2.2 Python Plugin-API 										(*Tatu & René*)
 

@@ -1,3 +1,5 @@
+[<- Back](../)
+
 # 1.2 Importing Settings 										(*Rene*)
 
 - auto_closing_level: AutoClosingLevel = AutoClosingLevel.TEST,
