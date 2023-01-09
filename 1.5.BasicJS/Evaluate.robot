@@ -18,6 +18,7 @@ Test with Robot
     Log Many    @{texts}
     Length Should Be    ${texts}    19
 
+
 Test with for loop
     ${texts}=    Evaluate JavaScript    a
     ...    elements => {
@@ -40,6 +41,7 @@ Test with array function
     ...    all_elements=True
     Log Many    @{texts}
     Length Should Be    ${texts}    19
+
 
 Test as Objects
     ${texts}=    Evaluate JavaScript    a
