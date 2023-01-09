@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.8.13 on linux)" generated="20230109 14:25:41.270" rpa="false" schemaversion="3">
+<suite id="s1" name="Robotframework-Browser-Advanced-Workshop" source="/workspace/robotframework-browser-advanced-workshop">
+<suite id="s1-s1" name="1.5.BasicJS" source="/workspace/robotframework-browser-advanced-workshop/1.5.BasicJS">
+<suite id="s1-s1-s1" name="Evaluate" source="/workspace/robotframework-browser-advanced-workshop/1.5.BasicJS/Evaluate.robot">
+<test id="s1-s1-s1-t1" name="Test" line="6">
+<kw name="New Browser" library="Browser">
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<msg timestamp="20230109 14:25:42.125" level="TRACE">Arguments: [ headless=False ]</msg>
+<msg timestamp="20230109 14:25:42.126" level="INFO">{"browser": "chromium", "headless": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "deprecated_pos_args": [], "tracesDir": "/workspace/robotframework-browser-advanced-workshop/results/browser/traces/6ca88551-4749-4a21-be1f-cf2134b2fa1c"}</msg>
+<msg timestamp="20230109 14:25:42.953" level="DEBUG">Using fail-screenshot-{index} to take screenshot.</msg>
+<msg timestamp="20230109 14:25:42.957" level="WARN">Keyword 'Take Screenshot  fail-screenshot-{index}' could not be run on failure:
+Error: Tried to take screenshot, but no page was open.</msg>
+<msg timestamp="20230109 14:25:42.958" level="FAIL">Error: browserType.launch: 
+╔════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ Looks like you launched a headed browser without having a XServer running.                     ║
+║ Set either 'headless: true' or use 'xvfb-run &lt;your-playwright-app&gt;' before running Playwright. ║
+║                                                                                                ║
+║ &lt;3 Playwright Team                                                                             ║
+╚════════════════════════════════════════════════════════════════════════════════════════════════╝
+=========================== logs ===========================
+&lt;launching&gt; /workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/Browser/wrapper/node_modules/playwright-core/.local-browsers/chromium-1041/chrome-linux/chrome --disable-field-trial-config --disable-background-networking --enable-features=NetworkService,NetworkServiceInProcess --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-sync --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-J5Ygdy --remote-debugging-pipe --no-startup-window
+&lt;launched&gt; pid=14808
+[pid=14808][err] [14808:14808:0109/142542.934858:ERROR:ozone_platform_x11.cc(238)] Missing X server or $DISPLAY
+[pid=14808][err] [14808:14808:0109/142542.934912:ERROR:env.cc(255)] The platform failed to initialize.  Exiting.
+============================================================</msg>
+<msg timestamp="20230109 14:25:42.992" level="DEBUG">Traceback (most recent call last):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/Browser/playwright.py", line 149, in grpc_channel
+    yield playwright_pb2_grpc.PlaywrightStub(self._channel)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/Browser/keywords/playwright_state.py", line 405, in new_browser
+    response = stub.NewBrowser(
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/grpc/_channel.py", line 946, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/grpc/_channel.py", line 849, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: &lt;_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.RESOURCE_EXHAUSTED
+	details = "Error: browserType.launch: 
+╔════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ Looks like you launched a headed browser without having a XServer running.                     ║
+║ Set either 'headless: true' or use 'xvfb-run &lt;your-playwright-app&gt;' before running Playwright. ║
+║                                                                                                ║
+║ &lt;3 Playwright Team                                                                             ║
+╚════════════════════════════════════════════════════════════════════════════════════════════════╝
+=========================== logs ===========================
+&lt;launching&gt; /workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/Browser/wrapper/node_modules/playwright-core/.local-browsers/chromium-1041/chrome-linux/chrome --disable-field-trial-config --disable-background-networking --enable-features=NetworkService,NetworkServiceInProcess --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-sync --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-J5Ygdy --remote-debugging-pipe --no-startup-window
+&lt;launched&gt; pid=14808
+[pid=14808][err] [14808:14808:0109/142542.934858:ERROR:ozone_platform_x11.cc(238)] Missing X server or $DISPLAY
+[pid=14808][err] [14808:14808:0109/142542.934912:ERROR:env.cc(255)] The platform failed to initialize.  Exiting.
+============================================================"
+	debug_error_string = "UNKNOWN:Error received from peer ipv4:127.0.0.1:35701 {grpc_message:"Error: browserType.launch: \n\xe2\x95\x94\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x97\n\xe2\x95\x91 Looks like you launched a headed browser without having a XServer running.                     \xe2\x95\x91\n\xe2\x95\x91 Set either \'headless: true\' or use \'xvfb-run &lt;your-playwright-app&gt;\' before running Playwright. \xe2\x95\x91\n\xe2\x95\x91                                                                                                \xe2\x95\x91\n\xe2\x95\x91 &lt;3 Playwright Team                                                                             \xe2\x95\x91\n\xe2\x95\x9a\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9d\n=========================== logs ===========================\n&lt;launching&gt; /workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/Browser/wrapper/node_modules/playwright-core/.local-browsers/chromium-1041/chrome-linux/chrome --disable-field-trial-config --disable-background-networking --enable-features=NetworkService,NetworkServiceInProcess --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-sync --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-J5Ygdy --remote-debugging-pipe --no-startup-window\n&lt;launched&gt; pid=14808\n[pid=14808][err] [14808:14808:0109/142542.934858:ERROR:ozone_platform_x11.cc(238)] Missing X server or $DISPLAY\n[pid=14808][err] [14808:14808:0109/142542.934912:ERROR:env.cc(255)] The platform failed to initialize.  Exiting.\n============================================================", grpc_status:8, created_time:"2023-01-09T14:25:42.952760195+00:00"}"
+&gt;
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/Browser/browser.py", line 1099, in run_keyword
+    raise e
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/Browser/browser.py", line 1088, in run_keyword
+    return DynamicCore.run_keyword(self, name, args, kwargs)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/robotlibcore.py", line 105, in run_keyword
+    return self.keywords[name](*args, **(kwargs or {}))
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/Browser/keywords/playwright_state.py", line 409, in new_browser
+    return response.body
+  File "/home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/Browser/playwright.py", line 153, in grpc_channel
+    raise AssertionError(error.details())
+AssertionError: Error: browserType.launch: 
+╔════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ Looks like you launched a headed browser without having a XServer running.                     ║
+║ Set either 'headless: true' or use 'xvfb-run &lt;your-playwright-app&gt;' before running Playwright. ║
+║                                                                                                ║
+║ &lt;3 Playwright Team                                                                             ║
+╚════════════════════════════════════════════════════════════════════════════════════════════════╝
+=========================== logs ===========================
+&lt;launching&gt; /workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/Browser/wrapper/node_modules/playwright-core/.local-browsers/chromium-1041/chrome-linux/chrome --disable-field-trial-config --disable-background-networking --enable-features=NetworkService,NetworkServiceInProcess --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-sync --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-J5Ygdy --remote-debugging-pipe --no-startup-window
+&lt;launched&gt; pid=14808
+[pid=14808][err] [14808:14808:0109/142542.934858:ERROR:ozone_platform_x11.cc(238)] Missing X server or $DISPLAY
+[pid=14808][err] [14808:14808:0109/142542.934912:ERROR:env.cc(255)] The platform failed to initialize.  Exiting.
+============================================================</msg>
+<status status="FAIL" starttime="20230109 14:25:42.124" endtime="20230109 14:25:42.993"/>
+</kw>
+<kw name="New Page" library="Browser">
+<arg>http://robocon.io</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="NOT RUN" starttime="20230109 14:25:42.996" endtime="20230109 14:25:42.997"/>
+</kw>
+<kw name="Evaluate JavaScript" library="Browser">
+<var>${texts}</var>
+<arg>a</arg>
+<arg>(elements) =&gt; elements.map(e =&gt; e.innerText)</arg>
+<arg>all_elements=True</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Executes given javascript on the selected element(s) or on page.</doc>
+<status status="NOT RUN" starttime="20230109 14:25:42.998" endtime="20230109 14:25:42.999"/>
+</kw>
+<kw name="Log Many" library="BuiltIn">
+<arg>${texts}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<status status="NOT RUN" starttime="20230109 14:25:43.001" endtime="20230109 14:25:43.001"/>
+</kw>
+<status status="FAIL" starttime="20230109 14:25:42.118" endtime="20230109 14:25:43.004">Error: browserType.launch: 
+╔════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ Looks like you launched a headed browser without having a XServer running.                     ║
+║ Set either 'headless: true' or use 'xvfb-run &lt;your-playwright-app&gt;' before running Playwright. ║
+║                                                                                                ║
+║ &lt;3 Playwright Team                                                                             ║
+╚════════════════════════════════════════════════════════════════════════════════════════════════╝
+=========================== logs ===========================
+&lt;launching&gt; /workspace/.pyenv_mirror/user/current/lib/python3.8/site-packages/Browser/wrapper/node_modules/playwright-core/.local-browsers/chromium-1041/chrome-linux/chrome --disable-field-trial-config --disable-background-networking --enable-features=NetworkService,NetworkServiceInProcess --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-sync --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-J5Ygdy --remote-debugging-pipe --no-startup-window
+&lt;launched&gt; pid=14808
+[pid=14808][err] [14808:14808:0109/142542.934858:ERROR:ozone_platform_x11.cc(238)] Missing X server or $DISPLAY
+[pid=14808][err] [14808:14808:0109/142542.934912:ERROR:env.cc(255)] The platform failed to initialize.  Exiting.
+============================================================</status>
+</test>
+<status status="FAIL" starttime="20230109 14:25:41.330" endtime="20230109 14:25:43.022"/>
+</suite>
+<status status="FAIL" starttime="20230109 14:25:41.326" endtime="20230109 14:25:43.028"/>
+</suite>
+<status status="FAIL" starttime="20230109 14:25:41.274" endtime="20230109 14:25:43.031"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Robotframework-Browser-Advanced-Workshop">Robotframework-Browser-Advanced-Workshop</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="1.5.BasicJS">Robotframework-Browser-Advanced-Workshop.1.5.BasicJS</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1-s1" name="Evaluate">Robotframework-Browser-Advanced-Workshop.1.5.BasicJS.Evaluate</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20230109 14:25:42.957" level="WARN">Keyword 'Take Screenshot  fail-screenshot-{index}' could not be run on failure:
+Error: Tried to take screenshot, but no page was open.</msg>
+</errors>
+</robot>
