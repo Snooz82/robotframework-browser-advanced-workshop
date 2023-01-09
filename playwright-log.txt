@@ -1,0 +1,3 @@
+{"level":30,"time":"2023-01-09T17:23:36.969Z","pid":51366,"hostname":"snooz82-robotframeworkb-59jstbcqoqw","msg":"Listening on 57633"}
+{"level":30,"time":"2023-01-09T17:23:37.004Z","pid":51366,"hostname":"snooz82-robotframeworkb-59jstbcqoqw","msg":"Start of node method initializeExtension"}
+{"level":30,"time":"2023-01-09T17:23:37.007Z","pid":51366,"hostname":"snooz82-robotframeworkb-59jstbcqoqw","msg":"End of node method initializeExtension"}
