@@ -1,6 +1,6 @@
 [<- Back](/README.md)
 
-# 1 Python environemnt management
+# 1.1.1 Python environemnt management
 Use [pyenv](https://github.com/pyenv/pyenv) Python version management and Python
 [venv](https://docs.python.org/3/library/venv.html) for project specific dependencies management.
 
@@ -14,7 +14,7 @@ Why pyenv: lets you easily switch between multiple versions of Python.
 Why venv: venv module supports creating lightweight “virtual environments”, each with their own
 independent set of Python packages installed in their site directories.
 
-# 2 Installation and binary structure
+# 1.1.2 Installation and binary structure
 
 `pip install robotframework-browser` installs all Python
 [dependencies][https://github.com/MarketSquare/robotframework-browser/blob/main/Browser/requirements.txt]
@@ -22,18 +22,18 @@ independent set of Python packages installed in their site directories.
 the Python environment, example in: `.venv/lib/python3.9/site-packages/Browser/`, but this is just an
 example in my environment.
 
-## 2.1 rfbowser init
+## 1.1.2.1 rfbowser init
 By default `rfbrowser init` installs all NodeJS
 [dependencies](https://github.com/MarketSquare/robotframework-browser/blob/main/package.json)
 , installation is done by default to `site-packages/Browser/wrapper/node_modules/` directory.
 This also install browser binaries under the `node_modules` folder, which easily can be
 +700Mb for each Browser library installation.
 
-## 2.2 Where is log from installation
+## 1.1.2.2 Where is log from installation
 By default all installation is logged in console and in a `site-packages/Browser/rfbrowser.log` file.
 Please remember that log file is overwritten each time `rfbrowser` command is run.
 
-## 2.3 Hwo to manage browser binaries in CI
+## 1.1.2.3 Hwo to manage browser binaries in CI
 Use `rfbrowser init --skip`, will install all NodeJS dependencies, expect the Playwright browser binaries.
 Playwright documentation, [managing browser binaries](https://playwright.dev/docs/browsers#managing-browser-binaries)
 provides instructions how to install Browser binaries in custom location, example in Bash with command:
