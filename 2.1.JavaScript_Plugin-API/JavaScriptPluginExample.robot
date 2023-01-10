@@ -26,3 +26,10 @@ Test Js Plugin Called From Python Plugin
     Mouse Wheel    -20    -150
     Get Scroll Position    ${None}    top    ==    50
     Get Scroll Position    ${None}    left    ==    30
+
+Upload file
+    New Context    tracing=trace.zip
+    New Page    https://data.imbus.de/index.php/s/zmnCqB8oHDKjct8
+    Upload File By Click    a.button.icon-upload    ${CURDIR}/DummyFile.txt
+    Wait For Condition    Element States   id=drop-uploaded-files >> [data-original-title='DummyFile.txt']   contains    attached
+    [Teardown]    Take Screenshot

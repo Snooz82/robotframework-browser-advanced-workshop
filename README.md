@@ -33,8 +33,6 @@ Repository with Training material
 
 ## 2.3 AssertionEngine											(*Tatu*)
 
-## 2.4 Assertion Formatters 									(*Tatu*)
-
 # 3. Browser Advanced Keywords
 
 ## 3.1. Waiting (playwright, Assertion, keywords, timeout) 		(*Tatu*)

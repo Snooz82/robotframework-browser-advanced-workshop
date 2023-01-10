@@ -5,9 +5,13 @@ from robot.api import logger
 from robot.api.deco import keyword
 from robot.utils import DotDict
 
+from assertionengine.assertion_engine import verify_assertion, AssertionOperator
+
 from Browser import Browser
 from Browser.base.librarycomponent import LibraryComponent
 from Browser.generated.playwright_pb2 import Request
+
+
 
 
 class PythonPlugin(LibraryComponent):
@@ -32,6 +36,14 @@ class PythonPlugin(LibraryComponent):
         location_dict = self.library.evaluate_javascript(None, f"window.location")
         logger.info(f"Location object:\n {json.dumps(location_dict, indent=2)}")
         return DotDict(location_dict)
+
+    @keyword
+    def get_hostname(self) -> dict:
+        ...
+
+    @keyword
+    def get_protocol(self) -> dict:
+        return verify_assertion(value, operator, expected)
 
     @keyword
     def mouse_wheel(self, x: int, y: int):
