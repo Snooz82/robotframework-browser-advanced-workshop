@@ -7,6 +7,7 @@ Repository with Training material
 - Introduce Tatu and Rene
 ## Participant Introduction
 
+- [ ] Who you are and where you come from?
 - [ ] Python Skills: 0-10
 - [ ] JS Skills: 0-10
 - [ ] WebTesting Skills: 0-10
