@@ -1,0 +1,31 @@
+{
+    "files.autoSave": "onFocusChange",
+    "explorer.compactFolders": false,
+    "git.autorefresh": true,
+    "git.autofetchPeriod": 10,
+    "robotcode.robot.pythonPath": [
+        "./lib",
+        "./resources",
+        "./"
+    ],
+    "robotcode.robot.args": [
+        "--loglevel",
+        "TRACE:INFO"
+    ],
+    "robotcode.debug.outputMessages": false,
+    "robotcode.debug.groupOutput": false,
+    "robotcode.robocop.enabled": false,
+    "redhat.telemetry.enabled": false,
+    "gitpod.openInStable.neverPrompt": true,
+    "git.autofetch": true,
+    "github.gitProtocol": "ssh",
+    "files.trimTrailingWhitespace": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "files.exclude": {
+        "**/.*": true,
+        "**/.vscode": true,
+        "LICENSE": true,
+    },
+    "workbench.iconTheme": "material-icon-theme",
+}

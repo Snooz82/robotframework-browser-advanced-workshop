@@ -133,3 +133,4 @@ package-lock.json
 package.json
 .eslintrc.js
 output
+playwright-log.txt
