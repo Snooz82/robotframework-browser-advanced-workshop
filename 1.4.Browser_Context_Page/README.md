@@ -165,7 +165,7 @@ Run test suite with command:
 robot --outputdir output 1.4.Browser_Context_Page/manual_autoclosing
 ```
 
-## 1.3.6 Catalog, Switching
+## 1.3.6 Catalog and Switching
 [Get Browser Catalog](https://marketsquare.github.io/robotframework-browser/Browser.html#Get%20Browser%20Catalog)
 list all currently open browsers, context and pages. Keyword returns data as list containing dictionaries.
 When there is this test:
