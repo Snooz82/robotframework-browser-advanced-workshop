@@ -29,7 +29,7 @@ Repository with Training material
 
 ## 2.1 [JavaScript Plugin-API](2.1.JavaScript_Plugin-API/)												(*René*)
 
-## 2.2 Python Plugin-API 										(*Tatu & René*)
+## 2.2 [Python Plugin-API](2.2.Python_Plugin-API/) 										(*Tatu & René*)
 
 ## 2.3 AssertionEngine											(*Tatu*)
 
