@@ -12,8 +12,6 @@ from Browser.base.librarycomponent import LibraryComponent
 from Browser.generated.playwright_pb2 import Request
 
 
-
-
 class PythonPlugin(LibraryComponent):
     def __init__(self, library: Browser):
         super().__init__(library)
