@@ -36,14 +36,6 @@ class PythonPlugin(LibraryComponent):
         return DotDict(location_dict)
 
     @keyword
-    def get_hostname(self) -> dict:
-        ...
-
-    @keyword
-    def get_protocol(self) -> dict:
-        return verify_assertion(value, operator, expected)
-
-    @keyword
     def mouse_wheel(self, x: int, y: int):
         """This keyword calls a custom javascript keyword from the file JSPlugin.js."""
         return self.call_js_keyword("mouseWheel", x=x, y=y, logger=None, page=None)
