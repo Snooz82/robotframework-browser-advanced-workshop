@@ -165,8 +165,136 @@ Run test suite with command:
 robot --outputdir output 1.4.Browser_Context_Page/manual_autoclosing
 ```
 
-## Catalog, Switching
+## 1.3.6 Catalog, Switching
+[Get Browser Catalog](https://marketsquare.github.io/robotframework-browser/Browser.html#Get%20Browser%20Catalog)
+list all currently open browsers, context and pages. Keyword returns data as list containing dictionaries.
+When there is this test:
+```robotframework
+*** Settings ***
+Resource    imports.resource
 
-- Catalog
-- New, Switch, Close
-- ALL/ANY & CURRENT/ACTIVE
+*** Test Cases ***
+Get Browser Catalog Logs All Open Browser Contexrs And Pages
+    New Context
+    ${PAGE1} =    New Page    https://marketsquare.github.io/robotframework-browser
+    ${PAGE2} =    New Page    https://robotframework.org
+    ${CATALOG} =    Get Browser Catalog
+    Set Global Variable    ${PAGE1}
+    Set Global Variable    ${PAGE2}
+    Set Global Variable    ${CATALOG}
+
+```
+Run test suite with command:
+```bash
+robot --outputdir output 1.4.Browser_Context_Page/catalog/suite_1.robot
+```
+Then open the `log.html` from the output folder and loog the `Get Browser Catalog` keyword logging.
+
+When switch between pages, contexts and browsers can be done with 
+[Switch Page](https://marketsquare.github.io/robotframework-browser/Browser.html#Switch%20Page),
+[Switch Context](https://marketsquare.github.io/robotframework-browser/Browser.html#Switch%20Context) and
+[Switch Browser](https://marketsquare.github.io/robotframework-browser/Browser.html#Switch%20Browser)
+keywords.
+
+When there are these test suites:
+```robotframework
+*** Settings ***
+Resource    imports.resource
+
+*** Test Cases ***
+Get Browser Catalog Logs All Open Browser Contexrs And Pages
+    ${BROWSER1} =    New Browser
+    ${CONTEXT1} =    New Context
+    ${PAGE1} =    New Page    https://marketsquare.github.io/robotframework-browser
+    ${PAGE2} =    New Page    https://robotframework.org
+    Get Browser Catalog
+    Set Global Variable    ${PAGE1}
+    Set Global Variable    ${PAGE2}
+    Set Global Variable    ${CONTEXT1}
+    Set Global Variable    ${BROWSER1}
+
+```
+
+and
+
+```robotframework
+*** Settings ***
+Resource    imports.resource
+*** Test Cases ***
+Open Example Pages
+    ${BROWSER2} =    New Browser
+    ${CONTEXT2} =    New Context
+    ${PAGE3} =    New Page    https://github.com/MarketSquare
+    ${CONTEXT3} =    New Context
+    ${PAGE4} =    New Page    https://robocon.io/
+    ${PAGE5} =    New Page    https://github.com/robotframework/
+    Get Title    ==    Robot Framework · GitHub
+    Set Global Variable    ${PAGE3}
+    Set Global Variable    ${PAGE4}
+    Set Global Variable    ${PAGE5}
+    Set Global Variable    ${CONTEXT2}
+    Set Global Variable    ${CONTEXT3}
+    Set Global Variable    ${BROWSER2}
+
+Switch Page
+    Switch Page    ${PAGE4}[page_id]
+    Get Title    ==    RoboCon
+    Switch Page    ${PAGE5}[page_id]
+    Get Title    ==    Robot Framework · GitHub
+    # By default is not possible to switch between context or browsers
+    # Magic words "CURRENT" and "ACTIVE" poinst to current context and browser
+    TRY
+        Switch Page    ${PAGE3}[page_id]    CURRENT    ACTIVE
+    EXCEPT    *No page for id page*    type=GLOB    AS   ${error}
+        Log    ${error}
+    END
+    # It possible to switch between context and/or browser by giving the ID
+    Switch Page    ${PAGE2}[page_id]    ${CONTEXT1}    ${BROWSER1}
+    # Also using magic words "ALL" or "ANY" allows searching between all contexs and browsers
+    [Teardown]    Switch Page    ${PAGE5}[page_id]    ANY    ALL
+
+Switch Context Also Changes Page
+    Switch Context    ${CONTEXT2}
+    Get Title    ==    marketsquare · GitHub
+    # By default is not possible to switch between browsers
+    TRY
+        Switch Context    ${CONTEXT1}
+    EXCEPT    *No context for id context=*    type=GLOB    AS   ${error}
+        Log    ${error}
+    END
+    # But Defining browser ID it is possible
+    Switch Context    ${CONTEXT1}    ${BROWSER1}
+    Get Title    ==    Robot Framework
+    # Instead of ID it is possible use magic word "ALL" to search from all browsers
+    Switch Context    ${CONTEXT3}    ALL
+    Get Title    ==    Robot Framework · GitHub
+
+Switch Browser Also Changes Page And Context
+    Switch Browser    ${BROWSER1}
+    Get Title    ==    Robot Framework
+    Get Browser Catalog
+
+```
+
+and 
+
+```robotframework
+*** Settings ***
+Resource    imports.resource
+
+*** Test Cases ***
+Open New Page With Click
+    New Page    https://github.com/MarketSquare/robotframework-browser
+    Click    a[href="https://robotframework-browser.org/"]    left    1    ${None}    ${None}    ${None}    ${False}    ${False}    Meta
+    # NEW magic word changes to next opened page
+    Switch Page    NEW
+    Wait Until Network Is Idle    timeout=10s
+    Get Title    ==    Browser Library
+    Get Browser Catalog
+
+```
+
+Run test suites with command:
+```bash
+robot --outputdir output 1.4.Browser_Context_Page/catalog
+```
