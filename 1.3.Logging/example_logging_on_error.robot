@@ -1,5 +1,6 @@
-*** Setting ***
-Library    Browser
+*** Settings ***
+Library     Browser
+
 
 *** Test Cases ***
 Playwrifght debug logs

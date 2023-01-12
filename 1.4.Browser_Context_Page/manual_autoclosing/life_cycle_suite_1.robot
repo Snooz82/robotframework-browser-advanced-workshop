@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    imports.resource
 
+
 *** Test Cases ***
 Open Context And Page With SUITE Autoclosing Level
     New Context

@@ -1,5 +1,6 @@
-*** Setting ***
-Library    Browser    enable_playwright_debug=True
+*** Settings ***
+Library     Browser    enable_playwright_debug=True
+
 
 *** Test Cases ***
 Playwrifght debug logs

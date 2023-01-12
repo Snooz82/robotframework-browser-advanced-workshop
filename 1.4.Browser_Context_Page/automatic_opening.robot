@@ -1,5 +1,6 @@
 *** Settings ***
-Library    Browser
+Library     Browser
+
 
 *** Test Cases ***
 Automatic Opening Of Browser And Context

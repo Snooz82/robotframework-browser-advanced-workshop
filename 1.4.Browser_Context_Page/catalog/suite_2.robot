@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    imports.resource
 
+
 *** Test Cases ***
 Open Example Pages
     ${BROWSER2} =    New Browser
@@ -26,7 +27,7 @@ Switch Page
     # Magic words "CURRENT" and "ACTIVE" poinst to current context and browser
     TRY
         Switch Page    ${PAGE3}[page_id]    CURRENT    ACTIVE
-    EXCEPT    *No page for id page*    type=GLOB    AS   ${error}
+    EXCEPT    *No page for id page*    type=GLOB    AS    ${error}
         Log    ${error}
     END
     # It possible to switch between context and/or browser by giving the ID
@@ -40,7 +41,7 @@ Switch Context Also Changes Page
     # By default is not possible to switch between browsers
     TRY
         Switch Context    ${CONTEXT1}
-    EXCEPT    *No context for id context=*    type=GLOB    AS   ${error}
+    EXCEPT    *No context for id context=*    type=GLOB    AS    ${error}
         Log    ${error}
     END
     # But Defining browser ID it is possible

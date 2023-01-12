@@ -1,5 +1,6 @@
 *** Settings ***
-Library    Browser
+Library     Browser
+
 
 *** Test Cases ***
 Open Context And Page With Default Autoclosing Level
@@ -10,6 +11,6 @@ Open Context And Page With Default Autoclosing Level
 No Context Or Pages Open
     TRY
         Get Title    contains    Browser
-    EXCEPT    *No page open*    type=GLOB    AS   ${error}
+    EXCEPT    *No page open*    type=GLOB    AS    ${error}
         Log    ${error}
     END

@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    imports.resource
 
+
 *** Test Cases ***
 Get Browser Catalog Logs All Open Browser Contexrs And Pages
     ${BROWSER1} =    New Browser

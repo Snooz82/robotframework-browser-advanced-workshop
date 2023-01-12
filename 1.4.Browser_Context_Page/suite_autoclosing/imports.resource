@@ -1,2 +1,2 @@
 *** Settings ***
-Library    Browser    auto_closing_level=SUITE
+Library     Browser    auto_closing_level=SUITE
