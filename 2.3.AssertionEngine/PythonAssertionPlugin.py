@@ -2,19 +2,16 @@ import json
 from pathlib import Path
 from typing import Optional, Union
 
+from assertionengine.assertion_engine import AssertionOperator, verify_assertion
+from Browser import Browser
+from Browser.base.librarycomponent import LibraryComponent
+from Browser.generated.playwright_pb2 import Request
 from robot.api import logger
 from robot.api.deco import keyword
 from robot.utils import DotDict
 
-from assertionengine.assertion_engine import verify_assertion, AssertionOperator
-
-from Browser import Browser
-from Browser.base.librarycomponent import LibraryComponent
-from Browser.generated.playwright_pb2 import Request
-
 
 class PythonAssertionPlugin(LibraryComponent):
-
     @keyword
     def get_location_object(self) -> dict:
         """Returns the location object of the current page.

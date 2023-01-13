@@ -1,14 +1,12 @@
 import json
 
+from Browser.base.librarycomponent import LibraryComponent
+from Browser.generated.playwright_pb2 import Request
 from robot.api import logger
 from robot.api.deco import keyword
 
-from Browser.base.librarycomponent import LibraryComponent
-from Browser.generated.playwright_pb2 import Request
-
 
 class SimplePythonPlugin(LibraryComponent):
-
     @keyword
     def new_plugin_cookie_keyword_with_grpc(self) -> dict:
         """Uses grpc to directly call node side function."""

@@ -1,15 +1,13 @@
 import json
 from pathlib import Path
 
-from robot.api import logger
-from robot.api.deco import keyword
-from robot.utils import DotDict
-
-from assertionengine.assertion_engine import verify_assertion, AssertionOperator
-
+from assertionengine.assertion_engine import AssertionOperator, verify_assertion
 from Browser import Browser
 from Browser.base.librarycomponent import LibraryComponent
 from Browser.generated.playwright_pb2 import Request
+from robot.api import logger
+from robot.api.deco import keyword
+from robot.utils import DotDict
 
 
 class PythonPlugin(LibraryComponent):
@@ -53,10 +51,10 @@ class PythonPlugin(LibraryComponent):
         # self.call_js_keyword("disable_element", selector=selector, disable=True, page=None)
         self.library.evaluate_javascript(selector, "e => e.disabled = true")
 
-
     @keyword
     def enable_element(self, selector):
         """Enables an element."""
         selector = self.resolve_selector(selector)
-        self.call_js_keyword("disable_element", selector=selector, disable=False, page=None)
-
+        self.call_js_keyword(
+            "disable_element", selector=selector, disable=False, page=None
+        )

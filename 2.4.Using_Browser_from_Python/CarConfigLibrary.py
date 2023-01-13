@@ -1,16 +1,10 @@
-import re
-
-from typing import Optional, Union, Dict, List
-from enum import Enum, auto
-
+from typing import Optional
 
 from assertionengine.assertion_engine import AssertionOperator as AO
 from Browser import Browser
 from Browser.utils import *
-from robot.api import logger
 from robot.api.deco import keyword, library
 from robot.libraries.BuiltIn import BuiltIn
-
 
 VERSION = "0.0.1"
 
@@ -30,10 +24,6 @@ class CarConfigLibrary:
                 self._browser_instance = BuiltIn().get_library_instance("Browser")
             except RuntimeError:
                 raise ImportError("You have to import the library 'Browser' as well.")
-                # COMMENT: possible fallback. but imho not a good idea.
-                # logger.debug("importing Browser library")
-                # BuiltIn().import_library('Browser')
-                # self._browser_instance = BuiltIn().get_library_instance('Browser')
         return self._browser_instance
 
     @keyword
