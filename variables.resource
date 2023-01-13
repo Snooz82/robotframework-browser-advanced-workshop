@@ -1,5 +1,5 @@
 *** Variables ***
-${ROOT_URL} =                       file://${CURDIR}/test_app/static/
+${ROOT_URL} =                       http://localhost:7272/
 ${LOGIN_URL} =                      ${ROOT_URL}dist/#/
 ${DRAGGAME_URL} =                   ${ROOT_URL}dist/#/draggame
 ${DOG_AND_CAT_URL} =                ${ROOT_URL}dogandcat.html

@@ -2,7 +2,7 @@
 Resource            ../variables.resource
 Library             Browser
 ...                     enable_playwright_debug=${True}
-...                     enable_presenter_mode=False
+...                     enable_presenter_mode=${True}
 ...                     plugins=${CURDIR}/PythonPlugin.py
 
 Suite Setup             New Browser   headless=False
@@ -46,7 +46,25 @@ Pluging Keyword Example Location
     [Setup]    New Page    http://robotframework.org/code/
     ${location} =   Get Location Object
     ${url} =    Get Url
-    Should Be Equal    ${location.hostname}    localhost
-    Should Be Equal    ${location.pathname}    /prefilled_email_form.html
-    Should Be Equal    ${location.protocol}    http:
-    Should Be Equal    ${location.href}        ${FORM_URL}
+    Should Be Equal    ${location.hostname}    robotframework.org
+    Should Be Equal    ${location.pathname}    /code/
+    Should Be Equal    ${location.protocol}    https:
+    Should Be Equal    ${location.href}        https://robotframework.org/code/
+
+Blur
+    New Page    http://car.keyword-driven.de
+    Focus       id=input_username
+    Get Element States    id=input_username    *=    focused
+    Blur        id=input_username
+    Get Element States    id=input_username    *=    defocused
+    Focus       id=input_password
+    Get Element States    id=input_password    *=    focused
+    Blur        id=input_password
+    Get Element States    id=input_password    *=    defocused
+
+Enable/disable
+    New Page    http://car.keyword-driven.de
+    Disable Element       id=input_username
+    Get Element States    id=input_username    *=    disabled
+    Enable Element        id=input_username
+    Get Element States    id=input_username    *=    enabled
