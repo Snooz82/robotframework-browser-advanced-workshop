@@ -3,6 +3,9 @@
     "explorer.compactFolders": false,
     "git.autorefresh": true,
     "git.autofetchPeriod": 10,
+    "robotcode.analysis.cache.ignoredLibraries": [
+        "Browser"
+    ],
     "robotcode.robot.pythonPath": [
         "./lib",
         "./resources",

@@ -5,7 +5,8 @@ Library             Browser
 ...                     enable_presenter_mode=False
 ...                     plugins=${CURDIR}/PythonPlugin.py
 
-Suite Setup         New Browser   headless=False
+Suite Setup             New Browser   headless=False
+
 Test Teardown       Close Context    ALL
 
 *** Test Cases ***
@@ -42,7 +43,7 @@ Test Js Plugin Called From Python Plugin
     Get Scroll Position    ${None}    left    ==    30
 
 Pluging Keyword Example Location
-    [Setup]    New Page    ${FORM_URL}
+    [Setup]    New Page    http://robotframework.org/code/
     ${location} =   Get Location Object
     ${url} =    Get Url
     Should Be Equal    ${location.hostname}    localhost

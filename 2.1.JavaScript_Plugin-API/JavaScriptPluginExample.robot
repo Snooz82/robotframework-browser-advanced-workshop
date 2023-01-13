@@ -2,7 +2,7 @@
 Resource            ../variables.resource
 Library             Browser
 ...                     enable_playwright_debug=${True}
-...                     enable_presenter_mode=False
+...                     enable_presenter_mode=True
 ...                     jsextension=${CURDIR}/js_keywords.js
 
 Suite Setup         New Browser   headless=False

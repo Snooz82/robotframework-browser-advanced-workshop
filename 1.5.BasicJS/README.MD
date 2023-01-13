@@ -7,7 +7,7 @@
   - `document` & `window` == Chrome
 
 ### NodeJS
- 
+
 ```javascript
 const number = 12
 let adding = 2
@@ -28,6 +28,8 @@ function add(a, b) {
 
 http://car.keyword-driven.de/login
 
+
+**Exercises:**
 Commands to try out in Dev Tools (F12) -> Console
 
 ```javascript
@@ -53,18 +55,23 @@ console.log(input_elements[0].outerHTML)
 ```
 
 ## Variable definition
-  - `let`: scoped to block 
+  - `let`: scoped to block
   - `var`: scoped to function
   - `const`: not re-assignable
+
+**Exercises:** Try out `node 1.5.BasicJS/var_script.js`
 
 
 ## Strings
   - `"str"` & `'str'`
   - ``` `test${var}` ```
 
-## Equality 
+## Equality
   - `"32" == 32` > `true`
   - `"32" === 32` > `false`
+
+**Exercises:** Try out `node 1.5.BasicJS/equal_script.js`
+
 
 ## Async
   - `async function`
@@ -74,15 +81,12 @@ console.log(input_elements[0].outerHTML)
 
 ## function vs Lambda-functions (aka Arrow-functions)
 
-"normal" function:
+### "normal" function:
 
 ```js
 function add(a, b) {
-    console.log("a was:", a);
-    console.log("b was:", b);
-    const result = a + b;
-    console.log(`${a} + ${b} = ${result}`);
-    return result;
+    console.log(`${a} + ${b} = ${a + b}`);
+    return a + b;
 }
 console.log("add(1, 2)", add(1, 2))
 
@@ -93,7 +97,11 @@ console.log("odds", odds)
 function isOdd(num) { return num % 2; }  //can be defined after usage
 ```
 
-Lambda function:
+**Exercises:** Try out `node 1.5.BasicJS/functions.js`
+
+
+
+### Lambda function:
 
 ```js
 const add = (a, b) => a + b  //must be defined before usage
@@ -108,10 +116,13 @@ const numberZeroToTen = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const odds = numberZeroToTen.filter(num => num % 2)   // super useful for callbacks
 console.log("odds", odds)
 ```
+**Exercises:** Try out `node 1.5.BasicJS/lambda.js`
+
+
 
 ## Objects, JSON, Dictionaries, Arrays
 
-js Objects are similar to Python dictionaries and can be parsed and dumped as string. 
+js Objects are similar to Python dictionaries and can be parsed and dumped as string.
 
 Literal syntax is a bit different: js fields without quotes, python keys (if strings) with quotes.
 
@@ -120,7 +131,10 @@ const myObject = { key: "test", key2: [ 1, 2, 3 ], key3: null, key4: { subKey: "
 const jsonString = JSON.stringify(myObject);
 console.log(jsonString);
 const myParsedObject = JSON.parse(jsonString);
+console.log(`key is ${myParsedObject.key}`)
 ```
+**Exercises:** Try out `node 1.5.BasicJS/object.js`
+
 
 ### Arrays
 
@@ -143,6 +157,12 @@ console.log(textElements);
 const tests = textElements.map(e => e.value);
 console.log(tests);
 ```
+**Exercises:**
+- Open http://car.keyword-driven.de in Browser
+- Open Dev Tools F12
+- Paste this script to `Console` and execute
+
+
 
 ## Evaluate Javascript
 
