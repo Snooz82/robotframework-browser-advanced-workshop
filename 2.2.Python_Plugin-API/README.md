@@ -45,7 +45,9 @@ class SimplePythonPlugin(LibraryComponent):
         return {"name": cookies[0]["name"], "value": cookies[0]["value"]}
 
 ```
+
 and this test:
+
 ```robotframework
 *** Settings ***
 Library             Browser
@@ -85,5 +87,47 @@ robot --outputdir output --loglevel debug 2.2.Python_Plugin-API/simple/
 
 Then look `log.html` file from the `output` folder
 
-## 2.2.2 Python plugin with JavaScript
+## 2.2.2 Resolving Selectors / Presenter Mode
 
+Selector prefix is something that has to be handled by the keywords itself.
+First step should be to resolve the selector:
+
+```python
+    @keyword
+    def disable_element(self, selector):
+        """Disables an element."""
+        selector = self.resolve_selector(selector)   # prefixes the selector with the set prefix
+        self.library.evaluate_javascript(selector=selector, "e => e.disabled = true")
+```
+
+Presenter mode works similar and resolves as well:
+
+```python
+    @keyword
+    def blur(self, selector):
+        """Calls blur on the element."""
+        selector = self.presenter_mode(selector, self.strict_mode)   #highlights the element and waits
+        self.call_js_keyword("blur", selector=selector, page=None)
+```
+
+## 2.2.3 Python plugin with NodeJS implementation
+###  Load JS plugin
+
+```python
+class PythonPlugin(LibraryComponent):
+    def __init__(self, library: Browser):
+        super().__init__(library)
+        self.initialize_js_extension(Path(__file__).parent.resolve() / "JSPlugin.js")
+```
+
+### Use it with `self.call_js_keyword`
+
+```python
+    @keyword
+    def mouse_wheel(self, x: int, y: int):
+        """This keyword calls a custom javascript keyword from the file JSPlugin.js."""
+        return self.call_js_keyword("mouseWheel", x=x, y=y, logger=None, page=None)
+```
+all arguments must be named and `logger`, `page` and `playwright` should be `None`
+
+arguments must be JSON serialisable.
