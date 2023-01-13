@@ -2,8 +2,15 @@
 Repository with Training material
 
 
+# Installation
+
+Python >= 3.7 is required.
+
+just call `python bootstrap.py` to setup.
+
+
 # Introduction
-	
+
 - Introduce Tatu and Rene
 ## Participant Introduction
 
@@ -12,7 +19,7 @@ Repository with Training material
 - [ ] JS Skills: 0-10
 - [ ] WebTesting Skills: 0-10
 - [ ] Robot Framework Skills: 0-10
- 
+
 # 1. Browser Fundamentals
 
 ## 1.1 [Installation and binary structure](1.1.Installation_and_Binaries/)		(*Tatu*)
