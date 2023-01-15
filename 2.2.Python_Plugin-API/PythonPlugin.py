@@ -48,7 +48,7 @@ class PythonPlugin(LibraryComponent):
     def disable_element(self, selector):
         """Disables an element."""
         selector = self.resolve_selector(selector)
-        # self.call_js_keyword("disable_element", selector=selector, disable=True, page=None)
+        # self.call_js_keyword("disableElement", selector=selector, disable=True, page=None)
         self.library.evaluate_javascript(selector, "e => e.disabled = true")
 
     @keyword
@@ -56,5 +56,5 @@ class PythonPlugin(LibraryComponent):
         """Enables an element."""
         selector = self.resolve_selector(selector)
         self.call_js_keyword(
-            "disable_element", selector=selector, disable=False, page=None
+            "disableElement", selector=selector, disable=False, page=None
         )
