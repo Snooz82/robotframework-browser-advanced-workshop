@@ -1,5 +1,6 @@
 *** Settings ***
 Library     Browser    enable_playwright_debug=True
+Suite Setup             New Browser   headless=False
 
 
 *** Test Cases ***

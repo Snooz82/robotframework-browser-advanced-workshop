@@ -4,7 +4,7 @@ Resource    imports.resource
 
 *** Test Cases ***
 Get Browser Catalog Logs All Open Browser Contexrs And Pages
-    ${BROWSER1} =    New Browser
+    ${BROWSER1} =    New Browser    headless=False
     ${CONTEXT1} =    New Context
     ${PAGE1} =    New Page    https://marketsquare.github.io/robotframework-browser
     ${PAGE2} =    New Page    https://robotframework.org

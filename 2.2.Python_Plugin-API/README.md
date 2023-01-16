@@ -107,7 +107,7 @@ Presenter mode works similar and resolves as well:
     def blur(self, selector):
         """Calls blur on the element."""
         selector = self.presenter_mode(selector, self.strict_mode)   #highlights the element and waits
-        self.call_js_keyword("blur", selector=selector, page=None)
+        self.call_js_keyword("blur", selector=selector)
 ```
 
 ## 2.2.3 Python plugin with NodeJS implementation
@@ -126,8 +126,6 @@ class PythonPlugin(LibraryComponent):
     @keyword
     def mouse_wheel(self, x: int, y: int):
         """This keyword calls a custom javascript keyword from the file JSPlugin.js."""
-        return self.call_js_keyword("mouseWheel", x=x, y=y, logger=None, page=None)
+        return self.call_js_keyword("mouseWheel", x=x, y=y)
 ```
-all arguments must be named and `logger`, `page` and `playwright` should be `None`
-
-arguments must be JSON serialisable.
+All arguments must be named and arguments must be JSON serializable.

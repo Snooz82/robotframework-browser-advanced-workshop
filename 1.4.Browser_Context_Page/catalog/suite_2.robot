@@ -4,7 +4,7 @@ Resource    imports.resource
 
 *** Test Cases ***
 Open Example Pages
-    ${BROWSER2} =    New Browser
+    ${BROWSER2} =    New Browser    headless=False
     ${CONTEXT2} =    New Context
     ${PAGE3} =    New Page    https://github.com/MarketSquare
     ${CONTEXT3} =    New Context

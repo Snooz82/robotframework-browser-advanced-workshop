@@ -1,10 +1,8 @@
 import json
 from pathlib import Path
 
-from assertionengine.assertion_engine import AssertionOperator, verify_assertion
 from Browser import Browser
 from Browser.base.librarycomponent import LibraryComponent
-from Browser.generated.playwright_pb2 import Request
 from robot.api import logger
 from robot.api.deco import keyword
 from robot.utils import DotDict
@@ -14,15 +12,6 @@ class PythonPlugin(LibraryComponent):
     def __init__(self, library: Browser):
         super().__init__(library)
         self.initialize_js_extension(Path(__file__).parent.resolve() / "JSPlugin.js")
-
-    @keyword
-    def new_plugin_cookie_keyword(self) -> dict:
-        """Uses grpc to directly call node side function."""
-        with self.playwright.grpc_channel() as stub:
-            response = stub.GetCookies(Request().Empty())
-            cookies = json.loads(response.json)
-        assert len(cookies) == 1, "Too many cookies."
-        return {"name": cookies[0]["name"], "value": cookies[0]["value"]}
 
     @keyword
     def get_location_object(self) -> dict:
@@ -36,13 +25,13 @@ class PythonPlugin(LibraryComponent):
     @keyword
     def mouse_wheel(self, x: int, y: int):
         """This keyword calls a custom javascript keyword from the file JSPlugin.js."""
-        return self.call_js_keyword("mouseWheel", x=x, y=y, logger=None, page=None)
+        return self.call_js_keyword("mouseWheel", x=x, y=y)
 
     @keyword
     def blur(self, selector):
         """Calls blur on the element."""
         selector = self.presenter_mode(selector, self.strict_mode)
-        self.call_js_keyword("blur", selector=selector, page=None)
+        self.call_js_keyword("blur", selector=selector)
 
     @keyword
     def disable_element(self, selector):

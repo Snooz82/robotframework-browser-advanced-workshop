@@ -1,5 +1,6 @@
 *** Settings ***
 Library     Browser
+Suite Setup             New Browser   headless=False
 
 
 *** Test Cases ***

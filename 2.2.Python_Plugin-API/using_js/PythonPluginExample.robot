@@ -1,5 +1,5 @@
 *** Settings ***
-Resource            ../variables.resource
+Resource            ../../variables.resource
 Library             Browser
 ...                     enable_playwright_debug=${True}
 ...                     enable_presenter_mode=${True}
@@ -10,27 +10,6 @@ Suite Setup             New Browser   headless=False
 Test Teardown       Close Context    ALL
 
 *** Test Cases ***
-Pluging Keyword Example
-    [Setup]    New Page    ${FORM_URL}
-    ${url} =    Get Url
-    Add Cookie
-    ...    Foo22
-    ...    Bar22
-    ...    url=${url}
-    ...    expires=3 155 760 000,195223
-    ${cookies} =    New Plugin Cookie Keyword
-    Should Not Be Empty    ${cookies}
-    Should Be Equal    ${cookies}[name]    Foo22
-    Should Be Equal    ${cookies}[value]    Bar22
-    Add Cookie
-    ...    Foo11
-    ...    Bar11
-    ...    url=${url}
-    ...    expires=3 155 760 000,195223
-    Run Keyword And Expect Error
-    ...    Too many cookies.
-    ...    New Plugin Cookie Keyword
-
 Test Js Plugin Called From Python Plugin
     [Setup]    New Page    ${TABLES_URL}
     Mouse Wheel    0    100
