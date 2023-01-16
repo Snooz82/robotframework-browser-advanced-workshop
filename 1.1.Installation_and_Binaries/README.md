@@ -1,6 +1,6 @@
 [<- Back](/README.md)
 
-# 1.1.1 Python environemnt management
+# 1.1.1 Interpreter environment management
 Use [pyenv](https://github.com/pyenv/pyenv) Python version management and Python
 [venv](https://docs.python.org/3/library/venv.html) for project specific dependencies management.
 
