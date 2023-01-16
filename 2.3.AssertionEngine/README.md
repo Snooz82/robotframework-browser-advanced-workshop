@@ -62,3 +62,30 @@ Run example with command:
 ```bash
 robot --outputdir output --loglevel debug 2.3.AssertionEngine/examples/assertion_formatters.robot
 ```
+
+## 2.3.3 Assertion with Python plugins
+Assertion operators can be also used with Python plugins, but assertions can not be used with JavaScript plugins,
+because assertion only exist in the Python side. Using assertion is show in following example:
+```python
+    @keyword
+    def get_protocol(
+        self,
+        assertion_operator: Optional[AssertionOperator] = None,
+        assertion_expected: Optional[str] = None,
+        message: Optional[str] = None,
+    ) -> str:
+        protocol = self.library.evaluate_javascript(None, f"window.location.protocol")
+        logger.info(f"Protocol: {protocol}")
+        return verify_assertion(
+            protocol, assertion_operator, assertion_expected, message
+        )
+```
+And then used like this: 
+```robotframework
+    Get Protocol    ==    https:
+```
+
+Run the full example with command: 
+```bash
+robot --outputdir output --loglevel debug 2.3.AssertionEngine/examples/PythonPluginExample.robot
+```

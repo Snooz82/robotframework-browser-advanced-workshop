@@ -1,5 +1,5 @@
 *** Settings ***
-Resource            ../variables.resource
+Resource            ../../variables.resource
 Library             Browser
 ...                 plugins=${CURDIR}/PythonAssertionPlugin.py
 ...                 show_keyword_call_banner=True
