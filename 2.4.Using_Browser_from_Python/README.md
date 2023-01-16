@@ -1,6 +1,6 @@
 [<- Back](/README.md)
 
-# 2.2 Using Browser from Python
+# 2.4 Using Browser from Python
 
 To create a library that accesses the same instance of Browser you have to import it from robot.
 
