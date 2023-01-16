@@ -44,7 +44,7 @@ just call `python bootstrap.py` to setup.
 
 # 3. Browser Advanced Keywords
 
-## 3.1. Waiting (playwright, Assertion, keywords, timeout) 		(*Tatu*)
+## 3.1. [Waiting](3.1.Waiting)                             		(*Tatu*)
 
 ## 3.2. Promise To 												(*René*)
 
