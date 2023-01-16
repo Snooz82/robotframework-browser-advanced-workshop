@@ -45,5 +45,5 @@ class PythonPlugin(LibraryComponent):
         """Enables an element."""
         selector = self.resolve_selector(selector)
         self.call_js_keyword(
-            "disableElement", selector=selector, disable=False, page=None
+            "disableElement", selector=selector, disable=False
         )

@@ -19,7 +19,7 @@ if not venv_dir.exists():
     EnvBuilder(with_pip=True).create(venv_dir)
 
 subprocess.run([venv_python, "-m", "pip", "install", "-U", "pip"])
-subprocess.run([venv_python, "-m", "pip", "install", "-r", "requirements.txt"])
+subprocess.run([venv_python, "-m", "pip", "install", "-U", "-r", "requirements.txt"])
 subprocess.run([venv_python, "-m", "Browser.entry", "init"])
 
 activate_script = (
