@@ -36,9 +36,9 @@ just call `python bootstrap.py` to setup.
 
 ## 2.1 [JavaScript Plugin-API](2.1.JavaScript_Plugin-API/)		(*René*)
 
-## 2.2 [Python Plugin-API](2.2.Python_Plugin-API/) 										(*Tatu & René*)
+## 2.2 [Python Plugin-API](2.2.Python_Plugin-API/) 								(*Tatu & René*)
 
-## 2.3 AssertionEngine											(*Tatu*)
+## 2.3 [AssertionEngine](2.3.AssertionEngine)									(*Tatu*)
 
 ## 2.4 Using Browser from Python                                (*René*)
 

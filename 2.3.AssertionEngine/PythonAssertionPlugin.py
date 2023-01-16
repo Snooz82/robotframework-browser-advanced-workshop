@@ -1,11 +1,8 @@
 import json
-from pathlib import Path
-from typing import Optional, Union
+from typing import Optional
 
 from assertionengine.assertion_engine import AssertionOperator, verify_assertion
-from Browser import Browser
 from Browser.base.librarycomponent import LibraryComponent
-from Browser.generated.playwright_pb2 import Request
 from robot.api import logger
 from robot.api.deco import keyword
 from robot.utils import DotDict
