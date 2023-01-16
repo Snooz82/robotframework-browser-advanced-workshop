@@ -40,7 +40,7 @@ just call `python bootstrap.py` to setup.
 
 ## 2.3 [AssertionEngine](2.3.AssertionEngine)									(*Tatu*)
 
-## 2.4 [Using_Browser_from_Python](2.4.Using_Browser_from_Python                (*René*)
+## 2.4 [Using Browser from Python](2.4.Using_Browser_from_Python)                (*René*)
 
 # 3. Browser Advanced Keywords
 
