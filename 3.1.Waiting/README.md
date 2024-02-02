@@ -1,8 +1,10 @@
 [<- Back](/README.md)
 
-# 3.1.1 Waiting by Playwright. 
+> Wait For Condition vs Wait For Elements State
+
+# 3.1.1 Waiting by Playwright.
 By default, before performing action, like click, Playwright performs
-[automatic waiting](https://playwright.dev/docs/actionability) by doing actionability checks. The waiting depends 
+[automatic waiting](https://playwright.dev/docs/actionability) by doing actionability checks. The waiting depends
 on which action keyword performs. Also some keywords, like
 [Click](https://marketsquare.github.io/robotframework-browser/Browser.html#Click)
 supports `force` argument which will disable actionability checks.
@@ -24,13 +26,13 @@ PW Waiting
 
 Run example with command:
 ```bash
-robot --outputdir output --loglevel debug 3.1.Waiting/examples/pw_waiting.robot 
+robot --outputdir output --loglevel debug 3.1.Waiting/examples/pw_waiting.robot
 ```
 How long waiting is done, is controlled by the
 [library](https://marketsquare.github.io/robotframework-browser/Browser.html#Importing) ` timeout` import
 argument or by using
 [Set Browser Timeout](https://marketsquare.github.io/robotframework-browser/Browser.html#Set%20Browser%20Timeout)
-keyword. 
+keyword.
 
 # 3.1.2 Waiting with assertions
 By default assertions are retried with one seconds. This can be changed with
@@ -73,11 +75,11 @@ Change timeout
 
 Run example with command:
 ```bash
-robot --outputdir output --loglevel debug 3.1.Waiting/examples/assertion_timeout.robot 
+robot --outputdir output --loglevel debug 3.1.Waiting/examples/assertion_timeout.robot
 ```
 
 # 3.1.3 Other Wait For.. keywords
-There are multiple helper keywords which can help on different situations. 
+There are multiple helper keywords which can help on different situations.
 
 ## 3.1.3.1 Wait Until Network Is Idle
 [Wait Until Network Is Idle](https://marketsquare.github.io/robotframework-browser/Browser.html#Wait%20Until%20Network%20Is%20Idle)

@@ -1,15 +1,17 @@
 [<- Back](/README.md)
 
+> Update Assertion Formatters
+
 # 2.3.1 AssertionEngine
-AssertionEngine provides three different features. 
-1) Allows inline assertions with `Get...` keywords. Instead of doing this: 
+AssertionEngine provides three different features.
+1) Allows inline assertions with `Get...` keywords. Instead of doing this:
 ```robotframework
 *** Test Cases ***
 Example 1
     ${text}    Get Text    [name="name"]
     Should Be Equal    ${text}    Prefilled Name
 ```
-One can do this: 
+One can do this:
 ```
 *** Test Cases ***
 Example 2
@@ -25,7 +27,7 @@ Example 3
 
 3) Performs automatic retry if received value does not match what was expected
 If element is found, but it did not contain the expected value keyword will perform
-automatic retry and will search the element again. 
+automatic retry and will search the element again.
 
 Example this will fail:
 ```robotframework
@@ -36,7 +38,7 @@ Example 4
 But by opening the log.html file, on can see from logging that
 keyword did perform multiple retries.
 
-Run example with command: 
+Run example with command:
 ```bash
 robot --outputdir output --loglevel debug 2.3.AssertionEngine/examples/example.robot
 ```
@@ -58,7 +60,7 @@ Assertion Formatters
 
 ```
 
-Run example with command: 
+Run example with command:
 ```bash
 robot --outputdir output --loglevel debug 2.3.AssertionEngine/examples/assertion_formatters.robot
 ```
@@ -80,12 +82,12 @@ because assertion only exist in the Python side. Using assertion is show in foll
             protocol, assertion_operator, assertion_expected, message
         )
 ```
-And then used like this: 
+And then used like this:
 ```robotframework
     Get Protocol    ==    https:
 ```
 
-Run the full example with command: 
+Run the full example with command:
 ```bash
 robot --outputdir output --loglevel debug 2.3.AssertionEngine/examples/PythonPluginExample.robot
 ```

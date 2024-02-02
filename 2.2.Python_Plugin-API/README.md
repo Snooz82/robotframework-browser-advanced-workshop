@@ -1,5 +1,7 @@
 [<- Back](/README.md)
 
+> Multiple Plugins are allowed. Mention
+
 # 2.2 Python Plugin API
 Python plugin API allows extending Browser library directly, by adding new keywords or replacing existing
 keywords. Plugin API is provided by [PythonLibCore](https://github.com/robotframework/PythonLibCore)

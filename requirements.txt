@@ -1,4 +1,3 @@
 robotframework-browser
-robotframework-debugger
-robotframework-tidy
 robotframework-debug
+robotframework-tidy

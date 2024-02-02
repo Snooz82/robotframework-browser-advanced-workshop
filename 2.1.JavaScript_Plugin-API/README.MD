@@ -1,5 +1,8 @@
 [<- Back](/README.md)
 
+> Add Debugging JS Code
+
+
 # 2.1 JavaScript Plugin-API
 
 ```javascript

@@ -50,7 +50,9 @@ just call `python bootstrap.py` to setup.
 
 ## 3.3. Get Element States 										(*René*)
 
-## 3.4. Upload File (Selector or Dialog) 						(*René*)
+## 3.4 SCOPE !!!!!
 
-## 3.5. Selectors (CSS, nth, playwright possibilities) 			(*René*)
+## 3.5. Upload File (Selector or Dialog) 						(*René*)
+
+## 3.6. Selectors (CSS, nth, playwright possibilities) 			(*René*)
 
