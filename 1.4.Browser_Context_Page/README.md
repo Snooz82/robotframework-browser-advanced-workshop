@@ -1,7 +1,5 @@
 [<- Back](/README.md)
 
-> Add AutoClosing Manual
-
 # 1.4 Browser, Context, Page
 Browser/Context/Page are the three pillars of Playwright and how it controls the browser binaries and how the
 pages are opened.
@@ -166,6 +164,42 @@ Run test suite with command:
 ```bash
 robot --outputdir output 1.4.Browser_Context_Page/manual_autoclosing
 ```
+
+When `KEEP` auto closing level is defined, then browser, context and pages are not closed. This is useful feature
+when developing test cases, but then user is responsible
+for terminating process left running, also including
+Browser library node process.. Example when there are this suite:
+
+```robotframework
+*** Settings ***
+Resource    imports.resource
+
+
+*** Test Cases ***
+Open Context And Page With KEEP Autoclosing Level
+    New Context
+    New Page    https://marketsquare.github.io/robotframework-browser
+    Get Title    contains    Browser
+
+Context And Page Are Open ForEver
+    Get Title    contains    Browser
+
+```
+
+And this resource file
+```robotframework
+*** Settings ***
+Library     Browser    auto_closing_level=KEEP
+
+```
+Run test suite with command:
+```bash
+robot --outputdir output 1.4.Browser_Context_Page/keep_autoclosing
+```
+
+After test execution look you favorite process monitor
+and notice the lefover processes.
+
 
 ## 1.3.6 Catalog and Switching
 [Get Browser Catalog](https://marketsquare.github.io/robotframework-browser/Browser.html#Get%20Browser%20Catalog)
