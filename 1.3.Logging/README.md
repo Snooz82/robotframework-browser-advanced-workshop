@@ -1,7 +1,5 @@
 [<- Back](/README.md)
 
-> Check CLi Commands for TRACE
-
 
 # 1.3 Logging (playwright Logs, Robot Loglevel, PW Trace)
 
@@ -117,7 +115,7 @@ Then `trace.zip` file from the output directory can be opened in two ways.
 1) Playwright provides online service: https://trace.playwright.dev/
 2) Open trace file locally with command:
 ````bash
-fbrowser show-trace --file output/trace.zip
+fbrowser show-trace output/trace.zip
 ````
 
 Then user should see something like:
