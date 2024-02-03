@@ -1,7 +1,5 @@
 [<- Back](/README.md)
 
-> Update Assertion Formatters
-
 # 2.3.1 AssertionEngine
 AssertionEngine provides three different features.
 1) Allows inline assertions with `Get...` keywords. Instead of doing this:
@@ -35,18 +33,26 @@ Example 4
     Get Text    [name="name"]    contains    Not Here
 
 ```
-But by opening the log.html file, on can see from logging that
-keyword did perform multiple retries.
+But by opening the log.html file, on can see from logging that keyword did perform multiple retries.
 
-Run example with command:
+Start test application in separate shell with command:
+```bash
+node test_app/server/server.js
+```
+
+Run example with commands:
 ```bash
 robot --outputdir output --loglevel debug 2.3.AssertionEngine/examples/example.robot
 ```
 
 # 2.3.2 AssertionEngine formatters
-Assertion formatters allows to perform simple operations, `normalize spaces`, `strip` and `apply to expected`
+Assertion formatters allows to perform simple operations, `normalize spaces`, `strip`, `case insensitive` and `apply to expected`
 operations to the returned value. If `apply to expected` is defined, then formatter is also applied
-to the expected value. Multiple formatters can be applied in same time.
+to the expected value. Multiple formatters can be applied in same time. Keyword also returns the old scope.
+
+Formatters also support scopes. If scope is not defined,
+default scope if `Global`, which means formatter is valid forever. Other scopes are `Suite` and `Test`.
+
 
 ```robotframework
 Assertion Formatters
@@ -55,8 +61,9 @@ Assertion Formatters
     EXCEPT    Text 'Prefilled Name' (str) should contain*    type=GLOB
         No Operation
     END
-    Set Assertion Formatters    {"Get Text": ["strip", "apply to expected"]}
+    ${old_scope} =    Set Assertion Formatters    {"Get Text": ["strip", "apply to expected"]}
     Get Text    [name="name"]    contains    ${SPACE*4}Prefilled Name${SPACE*3}
+    Log    ${old_scope}
 
 ```
 
@@ -66,8 +73,10 @@ robot --outputdir output --loglevel debug 2.3.AssertionEngine/examples/assertion
 ```
 
 ## 2.3.3 Assertion with Python plugins
-Assertion operators can be also used with Python plugins, but assertions can not be used with JavaScript plugins,
-because assertion only exist in the Python side. Using assertion is show in following example:
+Assertion operators can be also used with Python
+plugins, but assertions can not be used with JavaScript
+plugins, because assertion only exist in the Python
+side. Using assertion is show in following example:
 ```python
     @keyword
     def get_protocol(

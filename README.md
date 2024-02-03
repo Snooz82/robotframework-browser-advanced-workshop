@@ -4,7 +4,7 @@ Repository with Training material
 
 # Installation
 
-Python >= 3.7 is required.
+Python >= 3.8 is required.
 
 just call `python bootstrap.py` to setup.
 

@@ -1,7 +1,5 @@
 [<- Back](/README.md)
 
-> Multiple Plugins are allowed. Mention
-
 # 2.2 Python Plugin API
 Python plugin API allows extending Browser library directly, by adding new keywords or replacing existing
 keywords. Plugin API is provided by [PythonLibCore](https://github.com/robotframework/PythonLibCore)
@@ -87,7 +85,10 @@ And run the test with command:
 robot --outputdir output --loglevel debug 2.2.Python_Plugin-API/simple/
 ```
 
-Then look `log.html` file from the `output` folder
+Then look `log.html` file from the `output` folder.
+It is possible to use multiple plugins same time, but
+it is user responsibility make sure that they do not
+collide.
 
 ## 2.2.2 Resolving Selectors / Presenter Mode
 
