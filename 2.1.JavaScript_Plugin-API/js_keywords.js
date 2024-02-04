@@ -1,6 +1,5 @@
 exports.__esModule = true;
 exports.getLinks = getLinks;
-exports.mouseWheel = mouseWheel;
 exports.uploadFileByClick = uploadFileByClick;
 
 getLinks.rfdoc = `This keyword is implemented in JS.
@@ -20,13 +19,6 @@ async function getLinks (logger, page) {
     return links;
 }
 
-mouseWheel.rfdoc = 'This Keyword scrolls the page by mouse input.';
-async function mouseWheel (x, y, logger, page) {
-    logger(`Mouse wheel at ${x}, ${y}`);
-    await page.mouse.wheel(Number(x), Number(y));
-    logger('Returning a funny string');
-    return await page.evaluate('document.scrollingElement.scrollTop');
-}
 
 async function uploadFileByClick(selector, filePath, page) {
     const fileChooserPromise = page.waitForEvent('filechooser');
