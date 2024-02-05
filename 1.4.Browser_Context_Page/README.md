@@ -198,8 +198,11 @@ robot --outputdir output 1.4.Browser_Context_Page/keep_autoclosing
 ```
 
 After test execution look you favorite process monitor
-and notice the lefover processes.
+and notice the lefover processes, example:
 
+```bash
+ps -ax | grep robotframework-browser-advanced-workshop
+```
 
 ## 1.3.6 Catalog and Switching
 [Get Browser Catalog](https://marketsquare.github.io/robotframework-browser/Browser.html#Get%20Browser%20Catalog)
