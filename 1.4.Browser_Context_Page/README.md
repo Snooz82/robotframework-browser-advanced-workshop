@@ -57,7 +57,8 @@ Run test suite with command:
 robot --outputdir output 1.4.Browser_Context_Page/automatic_opening.robot
 ```
 
-Also closing browsers, contexts and pages happens automatically. Automatic closing is controlled with library import:
+Also closing browsers, contexts and pages happens automatically, expect on when KEEP is used.
+Automatic closing is controlled with library import:
 ` auto_closing_level`, default is the `TEST`.
 
 Default automatic closing means that context and pages are automatically closed after each tests
