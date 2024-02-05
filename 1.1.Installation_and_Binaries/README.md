@@ -35,7 +35,9 @@ binaries, but not wekit and firefox.
 
 ## 1.1.2.2 Where is log from installation
 By default all installation is logged in console and in a `site-packages/Browser/rfbrowser.log` file.
-Please remember that log file is overwritten each time `rfbrowser` command is run.
+Please remember last ten `rfbrowser` command are saved by
+rotating the log file. After ten command log files are
+overwritten.
 
 ## 1.1.2.3 Hwo to manage browser binaries in CI
 Use `rfbrowser init --skip-browsers`, will install all NodeJS dependencies, expect the Playwright browser binaries. Playwright documentation, [managing browser binaries](https://playwright.dev/docs/browsers#managing-browser-binaries)
