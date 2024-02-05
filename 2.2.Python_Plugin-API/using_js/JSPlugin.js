@@ -1,5 +1,5 @@
 exports.__esModule = true;
-exports.mouseWheel = mouseWheel;
+exports.myMouseWheel = mouseWheel;
 exports.blur = async (selector, page) => await page.locator(selector).blur();
 exports.disableElement = async (selector, disabled, page) => await page.locator(selector).evaluate((e, disabled) => e.disabled = disabled, disabled);
 

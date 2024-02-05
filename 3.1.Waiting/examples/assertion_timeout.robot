@@ -27,3 +27,15 @@ Change timeout
         No Operation
     END
     [Teardown]    Set Retry Assertions For    ${old_timeout}
+
+Change timeout with Scope
+    New Page    ${WAIT_URL}
+    Set Retry Assertions For    2s    scope=Test
+    Click    \#setdelay
+    Select Options By    \#dropdown    value    attached
+    Click    \#submit
+    TRY
+        Get Text    \#victim    ==    Not here
+    EXCEPT    *    type=GLOB
+        No Operation
+    END

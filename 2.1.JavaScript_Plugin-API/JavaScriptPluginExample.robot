@@ -15,15 +15,14 @@ JS Plugin Example
     Log Many    &{links}
     Log    ${links}
 
-
-Test Js Plugin Called From Python Plugin
+Test Js
     [Setup]    New Page    ${TABLES_URL}
-    Mouse Wheel    0    100
+    My Mouse Wheel        y=100
     Get Scroll Position    ${None}    top    ==    100
-    Mouse Wheel    50    100
+    My Mouse Wheel    50    100
     Get Scroll Position    ${None}    top    ==    200
     Get Scroll Position    ${None}    left    ==    50
-    Mouse Wheel    -20    -150
+    My Mouse Wheel    -20    -150
     Get Scroll Position    ${None}    top    ==    50
     Get Scroll Position    ${None}    left    ==    30
 
@@ -31,5 +30,5 @@ Upload file
     New Context    tracing=trace.zip
     New Page    https://data.imbus.de/index.php/s/zmnCqB8oHDKjct8
     Upload File By Click    a.button.icon-upload    ${CURDIR}/DummyFile.txt
-    Wait For Condition    Element States   id=drop-uploaded-files >> [data-original-title='DummyFile.txt']   contains    attached
+    Wait For Condition    Element States   id=drop-uploaded-files >> [data-name='DummyFile.txt']   contains    attached
     [Teardown]    Take Screenshot

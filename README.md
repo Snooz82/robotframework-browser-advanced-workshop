@@ -12,6 +12,7 @@ just call `python bootstrap.py` to setup.
 # Introduction
 
 - Introduce Tatu and Rene
+
 ## Participant Introduction
 
 - [ ] Who you are and where you come from?
@@ -50,7 +51,7 @@ just call `python bootstrap.py` to setup.
 
 ## 3.3. Get Element States 										(*René*)
 
-## 3.4 SCOPE !!!!!
+## 3.4. Setting Scope                                           (*René*)
 
 ## 3.5. Upload File (Selector or Dialog) 						(*René*)
 

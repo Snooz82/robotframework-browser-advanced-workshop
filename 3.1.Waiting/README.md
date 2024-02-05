@@ -1,7 +1,5 @@
 [<- Back](/README.md)
 
-> Wait For Condition vs Wait For Elements State
-
 # 3.1.1 Waiting by Playwright.
 By default, before performing action, like click, Playwright performs
 [automatic waiting](https://playwright.dev/docs/actionability) by doing actionability checks. The waiting depends
@@ -79,12 +77,17 @@ robot --outputdir output --loglevel debug 3.1.Waiting/examples/assertion_timeout
 ```
 
 # 3.1.3 Other Wait For.. keywords
+
 There are multiple helper keywords which can help on different situations.
 
-## 3.1.3.1 Wait Until Network Is Idle
-[Wait Until Network Is Idle](https://marketsquare.github.io/robotframework-browser/Browser.html#Wait%20Until%20Network%20Is%20Idle)
+## 3.1.3.1 [Wait For Condition](https://marketsquare.github.io/robotframework-browser/Browser.html#Wait%20For%20Condition)
+
+Waits for a condition, defined with Browser getter keywords to become True.
+
+## 3.1.3.2 [Wait Until Network Is Idle](https://marketsquare.github.io/robotframework-browser/Browser.html#Wait%20Until%20Network%20Is%20Idle)
+
 keyword will wait that the network traffic has stopped at least for 500milliseconds.
 
-## 3.1.3.2 Wait For Naviation
-[Wait For Navigation](https://marketsquare.github.io/robotframework-browser/Browser.html#Wait%20For%20Navigation)
+## 3.1.3.3 [Wait For Navigation](https://marketsquare.github.io/robotframework-browser/Browser.html#Wait%20For%20Navigation)
+
 keyword will wait that page has navigated to URL. The `wait_until` argument can be used to define the page load status.
