@@ -99,12 +99,13 @@ Library    Browser
 Playwrifght debug logs
     New Context    tracing=trace.zip
     New Page    https://github.com/MarketSquare/robotframework-browser/issues
-    Click    \#foobar
     Click    \#code-tab
     Wait Until Network Is Idle    timeout=3s
-    Type Text    input[name="q"]    robotframework
+    Type Text    .UnstyledTextInput-sc-14ypya-0    robotframework
     Keyboard Key    press    Enter
+    Wait Until Network Is Idle    timeout=3s
     Take Screenshot
+
 
 ```
 
