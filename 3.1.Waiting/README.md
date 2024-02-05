@@ -91,3 +91,7 @@ keyword will wait that the network traffic has stopped at least for 500milliseco
 ## 3.1.3.3 [Wait For Navigation](https://marketsquare.github.io/robotframework-browser/Browser.html#Wait%20For%20Navigation)
 
 keyword will wait that page has navigated to URL. The `wait_until` argument can be used to define the page load status.
+
+## 3.1.3.4 [Wait For Funtion](https://marketsquare.github.io/robotframework-browser/Browser.html#Wait%20For%20Function)
+
+Polls JavaScript expression or function in browser until it returns a (JavaScript) truthy value.
