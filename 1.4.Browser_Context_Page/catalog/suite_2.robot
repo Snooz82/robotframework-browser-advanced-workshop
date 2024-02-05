@@ -53,5 +53,5 @@ Switch Context Also Changes Page
 
 Switch Browser Also Changes Page And Context
     Switch Browser    ${BROWSER1}
-    Get Title    ==    Robot Framework
+    Get Title    ==    Robot Framework · GitHub
     Get Browser Catalog

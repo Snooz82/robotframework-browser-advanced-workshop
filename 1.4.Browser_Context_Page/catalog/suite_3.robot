@@ -5,16 +5,11 @@ Resource    imports.resource
 *** Test Cases ***
 Open New Page With Click
     New Page    https://github.com/MarketSquare/robotframework-browser
-    Click
+    Click With Options
     ...    a[href="https://robotframework-browser.org/"]
     ...    left
-    ...    1
-    ...    ${None}
-    ...    ${None}
-    ...    ${None}
-    ...    ${False}
-    ...    ${False}
     ...    Meta
+    ...    clickCount=1
     # NEW magic word changes to next opened page
     Switch Page    NEW
     Wait Until Network Is Idle    timeout=10s
