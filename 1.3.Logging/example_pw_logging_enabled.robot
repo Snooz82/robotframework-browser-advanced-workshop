@@ -1,5 +1,5 @@
 *** Settings ***
-Library     Browser    enable_playwright_debug=True
+Library     Browser    enable_playwright_debug=True     timeout=5s
 Suite Setup             New Browser   headless=False
 
 

@@ -79,7 +79,9 @@ with command:
 ```bash
 robot --outputdir output 1.3.Logging/example_pw_logging_enabled.robot
 ```
-and look again the `playwright-log.txt` from the output directory.
+and look again the `playwright-log.txt` from the output
+directory. Please remember that each test execution will
+overwrite the `playwright-log.txt` file.
 
 ## 1.3.3 Playwright trace
 

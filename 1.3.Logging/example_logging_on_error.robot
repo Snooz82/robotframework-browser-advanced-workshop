@@ -1,5 +1,5 @@
 *** Settings ***
-Library     Browser
+Library     Browser     timeout=5s
 Suite Setup             New Browser   headless=False
 
 *** Test Cases ***
