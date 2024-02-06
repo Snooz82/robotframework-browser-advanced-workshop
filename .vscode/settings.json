@@ -25,10 +25,5 @@
     "files.trimTrailingWhitespace": true,
     "git.enableSmartCommit": true,
     "git.confirmSync": false,
-    "files.exclude": {
-        "**/.*": true,
-        "**/.vscode": true,
-        "LICENSE": true,
-    },
     "workbench.iconTheme": "material-icon-theme",
 }
