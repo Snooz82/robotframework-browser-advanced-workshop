@@ -2,6 +2,7 @@ import json
 
 from Browser.base.librarycomponent import LibraryComponent
 from Browser.generated.playwright_pb2 import Request
+from Browser.keywords.getters import Getters
 from robot.api import logger
 from robot.api.deco import keyword
 
@@ -25,3 +26,9 @@ class SimplePythonPlugin(LibraryComponent):
             logger.debug(f"cookie {index}: {cookie}")
         assert len(cookies) > 1, "Too little cookies."
         return {"name": cookies[0]["name"], "value": cookies[0]["value"]}
+
+    @keyword
+    def get_title(self) -> int:
+        """This overrides the original keyword."""
+        ttl = Getters(self.library).get_title()
+        return len(ttl)

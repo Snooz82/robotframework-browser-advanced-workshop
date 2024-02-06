@@ -17,6 +17,8 @@ Simple Plugin Example With GRPC
     ${cookies} =    New Plugin Cookie Keyword With Grpc
     Should Be Equal    ${cookies}[name]    Foo22
     Should Be Equal    ${cookies}[value]    Bar22
+    ${t}    Get Title
+    Log To Console    ${t}
 
 Simple Plugin Example With Public API
     Add Cookie
