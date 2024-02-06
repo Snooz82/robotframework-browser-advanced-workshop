@@ -118,7 +118,7 @@ Then `trace.zip` file from the output directory can be opened in two ways.
 1) Playwright provides online service: https://trace.playwright.dev/
 2) Open trace file locally with command:
 ````bash
-fbrowser show-trace output/trace.zip
+rfbrowser show-trace output/trace.zip
 ````
 
 Then user should see something like:
