@@ -1,8 +1,8 @@
 *** Settings ***
 Library             Browser
-...                     enable_playwright_debug=${True}
-...                     plugins=${CURDIR}/SimplePythonPlugin.py
-...                     auto_closing_level=SUITE
+# ...                     enable_playwright_debug=${True}
+...                     plugins=${CURDIR}/SimplePythonPlugin.py,${CURDIR}/mylib.py
+# ...                     auto_closing_level=SUITE
 
 *** Test Cases ***
 Simple Plugin Example With GRPC
@@ -29,3 +29,9 @@ Simple Plugin Example With Public API
     ${cookies} =    Other Plugin Cookie Keyword With Public Api
     Should Be Equal    ${cookies}[name]    Foo22
     Should Be Equal    ${cookies}[value]    Bar22
+
+
+Test
+    [Setup]    New Page    http://car.keyword-driven.de
+    ${attr}    Get Attributes Comma Sep    id=input_username
+    Log To Console    ${attr}
