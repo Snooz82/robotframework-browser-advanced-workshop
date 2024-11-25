@@ -84,10 +84,8 @@ Example for Robot Code extension (partial content of "configurations" array in l
             "hidden": true
         },
         "env": {
-
             "ROBOT_FRAMEWORK_BROWSER_NODE_DEBUG_OPTIONS": "--inspect=127.0.0.1:9999"
         },
-        "attachPython": true,
         "pythonConfiguration": "RobotCode: Python"
     },
 
