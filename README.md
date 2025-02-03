@@ -29,7 +29,7 @@ just call `python bootstrap.py` to setup.
  - Browser/Context/Page
  - Plugin possibilities
 
-## 1.3 [Logging (playwright Logs, Robot Loglevel, PW Trace)](1.3.Logging/)		(*Tatu*) **ADD COVERAGE AND SO**
+## 1.2 [Logging (playwright Logs, Robot Loglevel, PW Trace)](1.2.Logging/)		(*Tatu*) **ADD COVERAGE AND SO**
 
 New Context    tracing=${{$LOGLEVEL == 'TRACE'}}
 
@@ -63,5 +63,3 @@ New Context    tracing=${{$LOGLEVEL == 'TRACE'}}
 ## 2.4 [Using Browser from Python](2.4.Using_Browser_from_Python)                (*René*)
 
 ## 3.1. [Waiting](3.1.Waiting)                             		(*Tatu*)
-
-
