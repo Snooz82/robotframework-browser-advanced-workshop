@@ -4,9 +4,16 @@ Repository with Training material
 
 # Installation
 
-Python >= 3.8 is required.
+Python >= 3.9 is required.
 
 just call `python bootstrap.py` to setup.
+
+# Test app
+There is example test app in a `test_app/server/server.js` folder.
+You can start test app by running: `node test_app/server/server.js`
+from the root of the repository. It starts and webserver to
+`http://localhost:7272` address. You can access pages in `static`
+folder, example `http://localhost:7272/prefilled_email_form.html`
 
 
 # Introduction
@@ -29,7 +36,7 @@ just call `python bootstrap.py` to setup.
  - Browser/Context/Page
  - Plugin possibilities
 
-## 1.2 [Logging (playwright Logs, Robot Loglevel, PW Trace)](1.2.Logging/)		(*Tatu*) **ADD COVERAGE AND SO**
+## 1.2 [Logging with Browser library](1.2.Logging/)		(*Tatu*) **ADD COVERAGE AND SO**
 
 New Context    tracing=${{$LOGLEVEL == 'TRACE'}}
 
