@@ -2,6 +2,10 @@ exports.__esModule = true;
 exports.getLinks = getLinks;
 exports.uploadFileByClick = uploadFileByClick;
 exports.myMouseWheel = mouseWheel;
+exports.mySuperKeyword = () => 'Hello World';
+
+
+
 getLinks.rfdoc = `This keyword is implemented in JS.
 
 
