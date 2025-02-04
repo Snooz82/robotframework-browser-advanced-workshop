@@ -9,8 +9,11 @@ log limited amount of events from the NodeJS side usually a status of the keywor
 explain what happen in the node side server and Playwright API calls. If Browser library keyword fails, the
 info level logging will show the error in the Playwright API call.
 
+Start the test app in a separate shell with command: `node test_app/server/server.js`
+Then navigate with your favorite browser to `http://localhost:7272/prefilled_email_form.html`
+and see that page opens successfully.
 
-As a first task, write an test that opens a page to `https://github.com/MarketSquare/robotframework-browser`
+As a first task, write an test that opens a page to `http://localhost:7272/prefilled_email_form.html`
 and tries to click something that does not exist. Run the test with default setting of robot command.
 
 When running this example:
@@ -92,7 +95,7 @@ ${secret}    this is secret in log.html but not in other logging
 
 *** Test Cases ***
 Playwrifght debug logs
-    New Context    tracing=trace.zip
+    New Context    tracing=${{$LOGLEVEL == 'TRACE'}}
     New Page    http://localhost:7272/prefilled_email_form.html
     Type Text    [name=comment]    this is not secret
     Type Secret    [name=comment]    $secret
