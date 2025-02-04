@@ -36,9 +36,11 @@ folder, example `http://localhost:7272/prefilled_email_form.html`
  - Browser/Context/Page
  - Plugin possibilities
 
-## 1.2 [Logging with Browser library](1.2.Logging/)		(*Tatu*) **ADD COVERAGE AND SO**
+## 1.2 [Logging with Browser library](1.2.Logging/)
 
-New Context    tracing=${{$LOGLEVEL == 'TRACE'}}
+All about where different information is placed in Browser library
+and how the most out of it.
+
 
 ## 1.4 [Browser, Context, Page](1.4.Browser_Context_Page/) (*Tatu*)
 ### Different Browser
