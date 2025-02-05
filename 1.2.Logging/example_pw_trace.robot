@@ -1,9 +1,12 @@
 *** Settings ***
-Library     Browser    enable_playwright_debug=True     timeout=2s
-Suite Setup             New Browser   headless=False
+Library         Browser    enable_playwright_debug=True    timeout=2s
+
+Suite Setup     New Browser    headless=False
+
 
 *** Variables ***
-${secret}    this is secret in log.html but not in other logging
+${secret}       this is secret in log.html but not in other logging
+
 
 *** Test Cases ***
 Playwrifght debug logs

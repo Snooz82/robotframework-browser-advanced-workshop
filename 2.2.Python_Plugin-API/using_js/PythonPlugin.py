@@ -1,11 +1,11 @@
 import json
 from pathlib import Path
 
-from Browser import Browser
-from Browser.base.librarycomponent import LibraryComponent
-from robot.api import logger
-from robot.api.deco import keyword
-from robot.utils import DotDict
+from Browser import Browser  # type: ignore
+from Browser.base.librarycomponent import LibraryComponent  # type: ignore
+from robot.api import logger  # type: ignore
+from robot.api.deco import keyword  # type: ignore
+from robot.utils import DotDict  # type: ignore
 
 
 class PythonPlugin(LibraryComponent):
@@ -14,11 +14,11 @@ class PythonPlugin(LibraryComponent):
         self.initialize_js_extension(Path(__file__).parent.resolve() / "JSPlugin.js")
 
     @keyword
-    def get_location_object(self) -> dict:
+    def get_location_object(self) -> DotDict:
         """Returns the location object of the current page.
 
         This keyword calles the python keyword `Evaluate Javascript` to get the location object."""
-        location_dict = self.library.evaluate_javascript(None, f"window.location")
+        location_dict = self.library.evaluate_javascript(None, "window.location")
         logger.info(f"Location object:\n {json.dumps(location_dict, indent=2)}")
         return DotDict(location_dict)
 
@@ -44,6 +44,4 @@ class PythonPlugin(LibraryComponent):
     def enable_element(self, selector):
         """Enables an element."""
         selector = self.resolve_selector(selector)
-        self.call_js_keyword(
-            "disableElement", selector=selector, disable=False
-        )
+        self.call_js_keyword("disableElement", selector=selector, disable=False)

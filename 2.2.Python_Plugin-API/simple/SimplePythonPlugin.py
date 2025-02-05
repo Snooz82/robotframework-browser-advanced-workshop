@@ -1,10 +1,10 @@
 import json
 
-from Browser.base.librarycomponent import LibraryComponent
-from Browser.generated.playwright_pb2 import Request
-from Browser.keywords.getters import Getters
-from robot.api import logger
-from robot.api.deco import keyword
+from Browser.base.librarycomponent import LibraryComponent  # type: ignore
+from Browser.generated.playwright_pb2 import Request  # type: ignore
+from Browser.keywords.getters import Getters  # type: ignore
+from robot.api import logger  # type: ignore
+from robot.api.deco import keyword  # type: ignore
 
 
 class SimplePythonPlugin(LibraryComponent):

@@ -1,8 +1,9 @@
 *** Settings ***
-Library    Browser
-Resource   ../../variables.resource
+Library         Browser
+Resource        ../../variables.resource
 
-Suite Setup    Examples Setup
+Suite Setup     Examples Setup
+
 
 *** Test Cases ***
 Example 1
@@ -17,6 +18,7 @@ Example 3
 
 Example 4
     Get Text    [name="name"]    contains    Not Here
+
 
 *** Keywords ***
 Examples Setup

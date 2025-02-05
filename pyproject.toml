@@ -1,0 +1,68 @@
+[tool.mypy]
+python_version = "3.10"
+no_implicit_optional = true
+strict_optional = true
+warn_return_any = true
+warn_no_return = true
+warn_unreachable = true
+pretty = true
+
+[tool.ruff]
+fix = false
+target-version = "py310"
+line-length = 100
+exclude = [
+  "__pycache__",
+  ".venv",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint]
+unfixable = []
+ignore = [
+  "ISC001",
+  "N999",  # Invalid module name: 'Browser'
+  "N801",  # CamelCase class name
+  "INP001",  # Implicit Namespace
+  "T201",  # Print statements
+  "PYI041", # `float` instead of `int | float`
+]
+select = [
+  "E",
+  "F",
+  "W",
+  "C90",
+  "I",
+  "N",
+  "B",
+  "PYI",
+  "PL",
+  "PTH",
+  "UP",
+  "A",
+  "C4",
+  "DTZ",
+  "ISC",
+  "ICN",
+  "INP",
+  "PIE",
+  "T20",
+  "PYI",
+  "PT",
+  "RSE",
+  "RET",
+  "SIM",
+  "RUF"
+]
+
+[tool.robocop]
+paths = ["."]
+include = ["W0504", "W0302"]
+exclude = ["W0201", "W0202", "W0203", "W0504"]
+reports = [
+    "rules_by_id",
+    "scan_timer"
+]
+ignore = ["ignore_me.robot"]

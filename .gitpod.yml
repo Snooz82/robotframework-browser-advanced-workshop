@@ -1,22 +1,27 @@
 tasks:
-  - name: prepare
-    before: |
-      sudo cp -f /workspace/robotframework-browser-advanced-workshop/.vscode/RBCN23.png /usr/share/backgrounds/xfce/xfce-stripes.png
-      clear
   - name: install System
+    before: |
+      echo 'export PYTHON=/home/gitpod/.pyenv/shims/python' >> ~/.bashrc
+      export PYTHON=/home/gitpod/.pyenv/shims/python
+      sudo cp -f /workspace/robotframework-tutorial-en/.vscode/RF_BACKGROUND.png /usr/share/backgrounds/xfce/xfce-verticals.png
+      npx --yes playwright install-deps
+      exit
+  - name: install Browser
     init: |
+      export PYTHON=/home/gitpod/.pyenv/shims/python
+      code -r Participants/
       python -m pip install --upgrade pip
       pip install --upgrade -r requirements.txt
       pip install --upgrade robotframework
-      rfbrowser init
       npx --yes playwright install-deps
-  - name: Command
-    command: |
-      sudo cp -f /workspace/robotframework-browser-advanced-workshop/.vscode/RBCN23.png /usr/share/backgrounds/xfce/xfce-stripes.png
-      clear
+      rfbrowser init
+      pre-commit install
+      code -r .
+      exit
 image: gitpod/workspace-full-vnc
 ports:
   - port: 6080
+    onOpen: open-preview
     visibility: private
 vscode:
   extensions:

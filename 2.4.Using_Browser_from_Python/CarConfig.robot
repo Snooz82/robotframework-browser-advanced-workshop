@@ -1,6 +1,7 @@
 *** Settings ***
-Library    CarConfigLibrary.py
-Library    Browser    timeout=5 sec
+Library     CarConfigLibrary.py
+Library     Browser    timeout=5 sec
+
 
 *** Test Cases ***
 Test1

@@ -2,25 +2,31 @@
 
 Also installs the needed dependencies.
 """
+
 import platform
 import subprocess
 from pathlib import Path
 from venv import EnvBuilder
 
-venv_dir = Path(".") / ".venv"
+venv_dir = Path(".venv")
 if not platform.platform().startswith("Windows"):
-    venv_python = venv_dir / "bin" / "python"
+    venv_bin = venv_dir / "bin"
+    venv_python = venv_bin / "python"
+    venv_pre_commit = venv_bin / "pre-commit"
 else:
-    venv_python = venv_dir / "Scripts" / "python.exe"
-src_dir = Path(".") / "Browser"
+    venv_bin = venv_dir / "Scripts"
+    venv_python = venv_bin / "python.exe"
+    venv_pre_commit = venv_bin / "pre-commit.exe"
+src_dir = Path("Browser")
 
 if not venv_dir.exists():
     print(f"Creating virtualenv in {venv_dir}")
     EnvBuilder(with_pip=True).create(venv_dir)
 
-subprocess.run([venv_python, "-m", "pip", "install", "-U", "pip"])
-subprocess.run([venv_python, "-m", "pip", "install", "-U", "-r", "requirements.txt"])
-subprocess.run([venv_python, "-m", "Browser.entry", "init"])
+subprocess.run([venv_python, "-m", "pip", "install", "-U", "pip"], check=True)
+subprocess.run([venv_python, "-m", "pip", "install", "-U", "-r", "requirements.txt"], check=True)
+subprocess.run([venv_python, "-m", "Browser.entry", "init"], check=True)
+subprocess.run([venv_pre_commit, "install"], check=True)
 
 activate_script = (
     "source .venv/bin/activate"
