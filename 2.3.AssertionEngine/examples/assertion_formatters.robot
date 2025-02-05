@@ -1,8 +1,9 @@
 *** Settings ***
-Library    Browser
-Resource   ../../variables.resource
+Library         Browser
+Resource        ../../variables.resource
 
-Suite Setup    Examples Setup
+Suite Setup     Examples Setup
+
 
 *** Test Cases ***
 Assertion Formatters
@@ -22,6 +23,7 @@ Test Scope
 No Scope
     ${old_scope} =    Set Assertion Formatters    {"Get Title": ["strip", ]}    Test
     Log    ${old_scope}
+
 
 *** Keywords ***
 Examples Setup

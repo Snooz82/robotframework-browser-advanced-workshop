@@ -1,7 +1,8 @@
 from pathlib import Path
-from Browser import Browser
-from Browser.base.librarycomponent import LibraryComponent
-from robot.api import logger
+
+from Browser import Browser  # type: ignore
+from Browser.base.librarycomponent import LibraryComponent  # type: ignore
+from robot.api import logger  # type: ignore
 from robot.api.deco import keyword
 
 
@@ -14,6 +15,6 @@ class simple(LibraryComponent):
     def get_elements_value(self, selector: str) -> list[str]:
         """Get elements value."""
         selector = self.resolve_selector(selector)
-        values = self.call_js_keyword("getElementsValue", selector=selector)
+        values = list(self.call_js_keyword("getElementsValue", selector=selector))
         logger.info(f"Values: {values}")
         return values

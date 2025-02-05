@@ -5,8 +5,9 @@ Library             Browser
 ...                     enable_presenter_mode=True
 ...                     jsextension=${CURDIR}/js_keywords.js
 
-Suite Setup         New Browser   headless=False
+Suite Setup         New Browser    headless=False
 Test Teardown       Close Context    ALL
+
 
 *** Test Cases ***
 JS Plugin Example
@@ -17,7 +18,7 @@ JS Plugin Example
 
 Test Js
     [Setup]    New Page    ${TABLES_URL}
-    My Mouse Wheel        y=100
+    My Mouse Wheel    y=100
     Get Scroll Position    ${None}    top    ==    100
     My Mouse Wheel    50    100
     Get Scroll Position    ${None}    top    ==    200
@@ -30,5 +31,9 @@ Upload file
     New Context    tracing=trace.zip
     New Page    https://data.imbus.de/index.php/s/zmnCqB8oHDKjct8
     Upload File By Click    a.button.icon-upload    ${CURDIR}/DummyFile.txt
-    Wait For Condition    Element States   id=drop-uploaded-files >> [data-name='DummyFile.txt']   contains    attached
+    Wait For Condition
+    ...    Element States
+    ...    id=drop-uploaded-files >> [data-name='DummyFile.txt']
+    ...    contains
+    ...    attached
     [Teardown]    Take Screenshot

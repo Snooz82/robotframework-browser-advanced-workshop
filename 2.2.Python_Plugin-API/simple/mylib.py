@@ -1,10 +1,8 @@
-from Browser.base.librarycomponent import LibraryComponent
-from robot.api.deco import keyword
+from Browser.base.librarycomponent import LibraryComponent  # type: ignore
+from robot.api.deco import keyword  # type: ignore
 
 
-class mylib(LibraryComponent):
-
-
+class MyLib(LibraryComponent):
     @keyword
     def get_attributes_comma_sep(self, selector: str):
         """Get attributes comma separated."""

@@ -1,7 +1,9 @@
 *** Settings ***
-Library    Browser
-Resource   ../../variables.resource
-Suite Setup    New Browser    headless=False
+Library         Browser
+Resource        ../../variables.resource
+
+Suite Setup     New Browser    headless=False
+
 
 *** Test Cases ***
 Default Assertion timeout

@@ -1,8 +1,11 @@
 *** Settings ***
-Library     Browser     timeout=2s
-Suite Setup             New Browser   headless=False
+Library         Browser    timeout=2s    enable_playwright_debug=${{$LOG_LEVEL == "TRACE"}}
+
+Suite Setup     New Browser    headless=False
+
 
 *** Test Cases ***
-Example Logging On Error
-    New Page    http://localhost:7272/prefilled_email_form.html
-    Click    id=foobar
+Playwrifght debug logs
+    New Context    tracing=${{$LOG_LEVEL == "TRACE"}}
+    New Page    https://github.com/MarketSquare/robotframework-browser/issues
+    Click    \#foobar

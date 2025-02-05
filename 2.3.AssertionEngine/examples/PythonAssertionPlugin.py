@@ -1,16 +1,15 @@
 import json
-from typing import Optional
 
 from assertionengine.assertion_engine import AssertionOperator, verify_assertion
-from Browser.base.librarycomponent import LibraryComponent
-from robot.api import logger
-from robot.api.deco import keyword
-from robot.utils import DotDict
+from Browser.base.librarycomponent import LibraryComponent  # type: ignore
+from robot.api import logger  # type: ignore
+from robot.api.deco import keyword  # type: ignore
+from robot.utils import DotDict  # type: ignore
 
 
 class PythonAssertionPlugin(LibraryComponent):
     @keyword
-    def get_location_object(self) -> dict:
+    def get_location_object(self) -> DotDict:
         """Returns the location object of the current page.
 
         Example:
@@ -28,14 +27,14 @@ class PythonAssertionPlugin(LibraryComponent):
         | }
 
         This keyword calles the python keyword `Evaluate Javascript` to get the location object."""
-        location_dict = self.library.evaluate_javascript(None, f"window.location")
+        location_dict = self.library.evaluate_javascript(None, "window.location")
         logger.info(f"Location object:\n {json.dumps(location_dict, indent=2)}")
         return DotDict(location_dict)
 
     @keyword
     def get_hostname(
         self,
-        assertion_operator: Optional[AssertionOperator] = None,
+        assertion_operator: AssertionOperator | None = None,
         assertion_expected=None,
     ) -> str:
         """Returns the hostname from URL
@@ -48,16 +47,16 @@ class PythonAssertionPlugin(LibraryComponent):
         Optionally asserts that hostname matches the specified assertion. See `Assertions`
         for further details for the assertion arguments. By default assertion is not done.
         """
-        hostname = self.library.evaluate_javascript(None, f"window.location.hostname")
+        hostname = self.library.evaluate_javascript(None, "window.location.hostname")
         logger.info(f"Hostname: {hostname}")
-        return verify_assertion(hostname, assertion_operator, assertion_expected)
+        return verify_assertion(hostname, assertion_operator, assertion_expected)  # type: ignore
 
     @keyword
     def get_protocol(
         self,
-        assertion_operator: Optional[AssertionOperator] = None,
-        assertion_expected: Optional[str] = None,
-        message: Optional[str] = None,
+        assertion_operator: AssertionOperator | None = None,
+        assertion_expected: str | None = None,
+        message: str | None = None,
     ) -> str:
         """Returns the protocol from URL
 
@@ -69,8 +68,6 @@ class PythonAssertionPlugin(LibraryComponent):
         Optionally asserts that protocol matches the specified assertion. See `Assertions`
         for further details for the assertion arguments. By default assertion is not done.
         """
-        protocol = self.library.evaluate_javascript(None, f"window.location.protocol")
+        protocol = self.library.evaluate_javascript(None, "window.location.protocol")
         logger.info(f"Protocol: {protocol}")
-        return verify_assertion(
-            protocol, assertion_operator, assertion_expected, message
-        )
+        return verify_assertion(protocol, assertion_operator, assertion_expected, message or "")  # type: ignore

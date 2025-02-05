@@ -1,6 +1,7 @@
 *** Settings ***
 Library     Browser    enable_playwright_debug=True
 
+
 *** Test Cases ***
 Playwrifght debug logs
     New Page    https://www.google.com/

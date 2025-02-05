@@ -5,9 +5,9 @@ Library             Browser
 ...                     enable_presenter_mode=${True}
 ...                     plugins=${CURDIR}/PythonPlugin.py
 
-Suite Setup             New Browser   headless=False
-
+Suite Setup         New Browser    headless=False
 Test Teardown       Close Context    ALL
+
 
 *** Test Cases ***
 Test Js Plugin Called From Python Plugin
@@ -23,27 +23,27 @@ Test Js Plugin Called From Python Plugin
 
 Pluging Keyword Example Location
     [Setup]    New Page    http://robotframework.org/code/
-    ${location} =   Get Location Object
+    ${location} =    Get Location Object
     ${url} =    Get Url
     Should Be Equal    ${location.hostname}    robotframework.org
     Should Be Equal    ${location.pathname}    /code/
     Should Be Equal    ${location.protocol}    https:
-    Should Be Equal    ${location.href}        https://robotframework.org/code/
+    Should Be Equal    ${location.href}    https://robotframework.org/code/
 
 Blur
     New Page    http://car.keyword-driven.de
-    Focus       id=input_username
+    Focus    id=input_username
     Get Element States    id=input_username    *=    focused
-    Blur        id=input_username
+    Blur    id=input_username
     Get Element States    id=input_username    *=    defocused
-    Focus       id=input_password
+    Focus    id=input_password
     Get Element States    id=input_password    *=    focused
-    Blur        id=input_password
+    Blur    id=input_password
     Get Element States    id=input_password    *=    defocused
 
 Enable/disable
     New Page    http://car.keyword-driven.de
-    Disable Element       id=input_username
+    Disable Element    id=input_username
     Get Element States    id=input_username    *=    disabled
-    Enable Element        id=input_username
+    Enable Element    id=input_username
     Get Element States    id=input_username    *=    enabled
