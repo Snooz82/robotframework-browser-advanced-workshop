@@ -134,3 +134,4 @@ package.json
 .eslintrc.js
 output
 playwright-log.txt
+.RESOURCES

@@ -1,8 +1,14 @@
 {
-    "files.autoSave": "onFocusChange",
     "explorer.compactFolders": false,
+    "files.autoSave": "onFocusChange",
+    "files.trimTrailingWhitespace": true,
     "git.autorefresh": true,
     "git.autofetchPeriod": 10,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "github.gitProtocol": "ssh",
+    "redhat.telemetry.enabled": false,
     "robotcode.robot.pythonPath": [
         "./lib",
         "./resources",
@@ -13,13 +19,7 @@
         "TRACE:INFO"
     ],
     "robotcode.robocop.enabled": false,
-    "redhat.telemetry.enabled": false,
-    "git.autofetch": true,
-    "github.gitProtocol": "ssh",
-    "files.trimTrailingWhitespace": true,
-    "git.enableSmartCommit": true,
-    "git.confirmSync": false,
-    "workbench.iconTheme": "material-icon-theme",
     "robotcode.debug.attachPython": true,
-    "debugpy.debugJustMyCode": false
+    "debugpy.debugJustMyCode": false,
+    "workbench.iconTheme": "material-icon-theme"
 }
