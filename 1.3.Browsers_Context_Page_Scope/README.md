@@ -1,23 +1,65 @@
 [<- Back](/README.md)
 
-# 1.4 Browser, Context, Page
-Browser/Context/Page are the three pillars of Playwright and how it controls the browser binaries and how the
-pages are opened.
+### 1.3.1 Browsers installation
+By default we install browser binaries packed with Playwright: Chromium, Firefox and Webkit.
+`rfbrowser init` command installs all those three. It is also possible to install only the
+selected browsers, example `rfbrowser init firefox` will install only Firefox. The those
+three browser binaries are installed in the Browser library installation directory and
+are isolated from the browser binaries installed in the system,
 
-## 1.4.1 Browser
-Browser defines which browser engine is used (chromium, firefox and webkit) and few other environment related options,
-like timeout or location of an external browser binary. Browser is the highest level in the hierarchy and there can be
-many browser open at the same time.
+It is also possible to install chrome, chrome-beta, msedge, msedge-beta and msedge-dev
+to your system with `rfbrowser init` But please note that are not isolated in same way
+as Chromium, Firefox and Webkit are. Instead installing example Chrome will replace
+the Chrome browser in your system. So be careful, if you decide to go this route.
 
-## 1.4.3 Context
+It is possible to skip browser binary installation and use your preferred way to manege
+browser binaries. Example in Docker container you may have browser binaries preinstalled
+and you may want to install only Browser library and it Python and NodeJS dependencies.
+
+#### 1.3.1.2 Using system Chrome or Edge
+Regardless how you did install Chrome or Edge, you can use these chromium based browsers
+in your tests.
+
+If you have Edge or Chrome installed in your system, write a test which launches
+Edge or Chrome for testing
+
+```robotframework
+*** Settings ***
+Library    Browser
+
+*** Test Cases ***
+Test With Chrome
+    New Browser    headless=False    channel=chrome
+    New Page    http://localhost:7272/prefilled_email_form.html
+    Type Text    [name=comment]    This is comment
+
+```
+
+And run test with
+```bash
+robot --outputdir output 1.3.Browsers_Context_Page_Scope/chrome_channel.robot
+```
+
+### 1.3.2 Browser, Context, Page
+Browser/Context/Page are the three pillars of Playwright. These pillars define test data controls the browser
+binaries and how the pages are opened.
+
+#### 1.3.2.1 Browser
+Browser defines which browser engine is used (chromium, firefox and webkit or on of the system installed
+chromium browser) and few other environment related options, like timeout or location of an external
+browser binary. Browser is the highest level in the hierarchy and there can be many browser open at the
+same time.
+
+#### 1.3.2.2 Context
 Context defines how the browser engine is opened, one can see as a definition how the browser profile is created.
 Example context defines is the offline mode enabled or what geolocation is set for the context, or allows modification
 of browser headers. Also controls few debugging options, like trace or video creation.
 
-Each contex is opened under the specific browser and one browser can have multiple context open at the same time.
+Each context is opened under the specific browser and one browser can have multiple context open at the same time.
 
-## 1.3.4 Page
+#### 1.3.2.3 Page
 Page is like a tab in the browser, it renders the opened URL. Page is always open under a specific context.
+One context can have multiple pages open.
 
 Example browsers/contexts/pages structure could be opened like this:
 ```
@@ -34,6 +76,85 @@ Browser 2
         -> Page 2.1.1
         -> Page 2.1.2
 ```
+
+#### 1.3.2.4 Persistent context
+Persistent context is special type of context. It creates automatically new browser and
+the main difference to "normal" context is that user can pass in
+[user data dir](https://playwright.dev/docs/api/class-browsertype#browser-type-launch-persistent-context-option-user-data-dir)
+and provide arguments to launch the browser binary. But use custom browser args
+at your own risk, as some of them may break Playwright functionality.
+
+### 1.3.3 Mobile
+You can test mobile views easily with Browser library. Browser library provides
+[Get Device](https://marketsquare.github.io/robotframework-browser/Browser.html#Get%20Device)
+keyword which allows you to set correct form factor and mobile settings for different
+models.
+
+Your task is to use `Get Device` keyword in your tests and experiment with different
+mobile models. See how it affects the underlying page. Different mobiles can be found from
+[Playwright deviceDescriptorsSource.json](https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/server/deviceDescriptorsSource.json)
+file. In your test use a public page which is reactive to mobile form factor.
+
+```robotframework
+*** Settings ***
+Library    Browser
+
+*** Test Cases ***
+Mobile testing
+    &{device}=    Get Device    iPhone 15
+    New Context    &{device}
+    New Page    https://marketsquare.github.io/robotframework-browser/Browser.html
+    Take Screenshot    mobile.png
+
+```
+
+### 1.3.4 Connect over CDP
+The
+[Connect To Browser](https://marketsquare.github.io/robotframework-browser/Browser.html#Connect%20To%20Browser)
+keyword allows users to connect to a Playwright browser server via playwright websocket
+or Chrome DevTools Protocol. Connect keyword is useful if you your browser binaries are
+hosted in different container/VM and you need to connect to from container/VM where
+your tests are running. Example Browsertack support connect.
+
+```robotframework
+*** Settings ***
+Library    Browser
+
+*** Test Cases ***
+Launch Browser Server Generated wsEndpoint
+    ${wsEndpoint} =    Launch Browser Server    chromium    headless=${HEADLESS}
+    ${browser} =    Connect To Browser    ${wsEndpoint}
+    New Page    ${LOGIN_URL}
+    Get Title    ==    Login Page
+    [Teardown]    Close Browser Server    ${wsEndpoint}
+```
+
+There is also an entry point to create wsEndpoint. Run
+`rfbrowser launch-browser-server --help` for how use the entry point.
+
+Create new test to use wsEndpoint created by rfbrowser launch-browser-server
+entry point.
+
+```robotframework
+*** Settings ***
+Library    Browser
+
+*** Test Cases ***
+Connect To wsEndpoint
+    VAR    ${wsEndpoint}    ws://localhost:61097/c2a09d1d363fb4ee8d1577c0d3761e32    # This is an example wsEndpoint
+    ${browser} =    Connect To Browser    ${wsEndpoint}
+    New Page    http://localhost:7272/prefilled_email_form.html
+    Get Title    ==    prefilled_email_form.html
+
+```
+
+Run example this from shell before the test
+```bash
+rfbrowser launch-browser-server chromium headless=True "timeout=10 sec"
+```
+
+### 1.3.5 Scope
+Browser library has scope or life cycle of objects. Example automatic of closing pages
 
 ## 1.3.5 Life cycle of three pillars
 Browser library opens automatically new browser and context, if browser and context does not already exist, when
