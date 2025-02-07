@@ -1,6 +1,6 @@
 [<- Back](/README.md)
 
-### 1.3.1 Browsers installation
+# 1.3.1 Browsers installation
 By default we install browser binaries packed with Playwright: Chromium, Firefox and Webkit.
 `rfbrowser init` command installs all those three. It is also possible to install only the
 selected browsers, example `rfbrowser init firefox` will install only Firefox. The those
@@ -16,7 +16,8 @@ It is possible to skip browser binary installation and use your preferred way to
 browser binaries. Example in Docker container you may have browser binaries preinstalled
 and you may want to install only Browser library and it Python and NodeJS dependencies.
 
-#### 1.3.1.2 Using system Chrome or Edge
+
+## 1.3.1.1 Using system Chrome or Edge
 Regardless how you did install Chrome or Edge, you can use these chromium based browsers
 in your tests.
 
@@ -40,24 +41,26 @@ And run test with
 robot --outputdir output 1.3.Browsers_Context_Page_Scope/chrome_channel.robot
 ```
 
-### 1.3.2 Browser, Context, Page
+# 1.3.2 Browser, Context, Page
 Browser/Context/Page are the three pillars of Playwright. These pillars define test data controls the browser
 binaries and how the pages are opened.
 
-#### 1.3.2.1 Browser
+## 1.3.2.1 Browser
 Browser defines which browser engine is used (chromium, firefox and webkit or on of the system installed
 chromium browser) and few other environment related options, like timeout or location of an external
 browser binary. Browser is the highest level in the hierarchy and there can be many browser open at the
 same time.
 
-#### 1.3.2.2 Context
+Browsers are by default reused as long as they have the same options.
+
+## 1.3.2.2 Context
 Context defines how the browser engine is opened, one can see as a definition how the browser profile is created.
 Example context defines is the offline mode enabled or what geolocation is set for the context, or allows modification
 of browser headers. Also controls few debugging options, like trace or video creation.
 
 Each context is opened under the specific browser and one browser can have multiple context open at the same time.
 
-#### 1.3.2.3 Page
+## 1.3.2.3 Page
 Page is like a tab in the browser, it renders the opened URL. Page is always open under a specific context.
 One context can have multiple pages open.
 
@@ -77,14 +80,14 @@ Browser 2
         -> Page 2.1.2
 ```
 
-#### 1.3.2.4 Persistent context
+## 1.3.2.4 Persistent context
 Persistent context is special type of context. It creates automatically new browser and
 the main difference to "normal" context is that user can pass in
 [user data dir](https://playwright.dev/docs/api/class-browsertype#browser-type-launch-persistent-context-option-user-data-dir)
 and provide arguments to launch the browser binary. But use custom browser args
 at your own risk, as some of them may break Playwright functionality.
 
-### 1.3.3 Mobile
+# 1.3.3 Mobile
 You can test mobile views easily with Browser library. Browser library provides
 [Get Device](https://marketsquare.github.io/robotframework-browser/Browser.html#Get%20Device)
 keyword which allows you to set correct form factor and mobile settings for different
@@ -108,7 +111,7 @@ Mobile testing
 
 ```
 
-### 1.3.4 Connect over CDP
+# 1.3.4 Connect over CDP
 The
 [Connect To Browser](https://marketsquare.github.io/robotframework-browser/Browser.html#Connect%20To%20Browser)
 keyword allows users to connect to a Playwright browser server via playwright websocket
@@ -153,10 +156,35 @@ Run example this from shell before the test
 rfbrowser launch-browser-server chromium headless=True "timeout=10 sec"
 ```
 
-### 1.3.5 Scope
-Browser library has scope or life cycle of objects. Example automatic of closing pages
 
-## 1.3.5 Life cycle of three pillars
+# 1.3.5 Pabot Speed Run
+
+When using Pabot each Thread starts and stops Robot Framework instances. That means that by default Browser library is initialized, a node process is started with Playwright, a browser process is started and tests are executed. Then all that is terminated again.
+
+What if we could **REUSE** the node process of RF Browser and also start only one browser per thread and just connect to it???
+
+see [tasks.py](../tasks.py) for an example implementation.
+
+Steps to execute:
+1. determine the number of physical cores on your machine
+2. start one Browser library instance with the NodeJS process and store the port number
+3. launch one Browser server vor each Pabot-thread/physical core and store the websocket endpoints in a variable
+4. start Pabot and hand over the NodeJS port and the websocket endpoints as Robot Framework variables.
+5. use these wsEndpoints in your tests if Pabot is in use and connect to the Browser server
+
+This script has some different modes.
+- `--reuse-node` When this is set, only one node process is started and its port is reused in all threads. That makes it possible to start the Browser in threads in parallel at the same time.
+- `--reuse-browser` When this is set, only one browser is started per thread and its wsEndpoint is reused in all threads.
+- `--browser_start_mode` This can either be `serial` or `parallel` and defines if the browsers are started after each other or in parallel. `parallel` only works with `--reuse-node` and `--reuse-browser` set.
+- `--headful` When this is set, the browser is started in headful mode.
+- `--browser` This can be `chromium`, `firefox` or `webkit` and defines which browser is used.
+- `--processes` This defines how many processes are started in parallel. If set to `0` the amount of physical cores is used.
+
+See [RF-Browser-Architecture.pptx](../RF-Browser-Architecture.pptx) for more information.
+
+# 1.3.6 Scope
+Browser library has scope or life cycle of objects. Example automatic of closing pages
+ 1.3.6 Life cycle of three pillars
 Browser library opens automatically new browser and context, if browser and context does not already exist, when
 new page is opened. Example these test case are identical:
 ```robotframework
@@ -325,8 +353,7 @@ and notice the lefover processes, example:
 ```bash
 ps -ax | grep robotframework-browser-advanced-workshop
 ```
-
-## 1.3.6 Catalog and Switching
+ 1.3.6 Catalog and Switching
 [Get Browser Catalog](https://marketsquare.github.io/robotframework-browser/Browser.html#Get%20Browser%20Catalog)
 list all currently open browsers, context and pages. Keyword returns data as list containing dictionaries.
 When there is this test:

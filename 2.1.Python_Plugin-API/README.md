@@ -1,6 +1,6 @@
 [<- Back](/README.md)
 
-# 2.2 Python Plugin API
+# 2.1 Python Plugin API
 Python plugin API allows extending Browser library directly, by adding new keywords or replacing existing
 keywords. Plugin API is provided by [PythonLibCore](https://github.com/robotframework/PythonLibCore)
 and is similar which is found from [SeleniumLibrary](https://github.com/robotframework/SeleniumLibrary)
@@ -11,7 +11,7 @@ Main difference is that JavaScript plugin allows only write code in NodeJS side.
 allows use both Python and JavaScript when creating keywords. Example with Python Plugin API it is possible
 use [AssertionEngine](https://github.com/MarketSquare/AssertionEngine).
 
-## 2.2.1 Python only plugin
+## 2.1.1 Python only plugin
 The simplest way to use Python plugin API is to create new keywords only in Python side. Example when there is this
 Python class:
 ```python
@@ -90,7 +90,7 @@ It is possible to use multiple plugins same time, but
 it is user responsibility make sure that they do not
 collide.
 
-## 2.2.2 Resolving Selectors / Presenter Mode
+## 2.1.2 Resolving Selectors / Presenter Mode
 
 Selector prefix is something that has to be handled by the keywords itself.
 First step should be to resolve the selector:
@@ -113,7 +113,7 @@ Presenter mode works similar and resolves as well:
         self.call_js_keyword("blur", selector=selector)
 ```
 
-## 2.2.3 Python plugin with NodeJS implementation
+## 2.1.3 Python plugin with NodeJS implementation
 ###  Load JS plugin
 
 ```python

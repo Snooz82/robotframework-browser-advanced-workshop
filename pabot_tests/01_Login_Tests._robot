@@ -1,0 +1,69 @@
+*** Settings ***
+Library             Browser    playwright_process_port=${PLAYWRIGHT_PORT}
+
+Test Setup          Open CarConfig
+Test Template       Login User
+
+
+*** Variables ***
+${BROWSER}                  chromium
+${HEADLESS} =               ${False}
+${PLAYWRIGHT_PORT} =        ${None}
+@{WS_ENDPOINTS} =           @{EMPTY}
+${PABOTEXECUTIONPOOLID}     0
+
+
+*** Test Cases ***
+User00    user00    password
+User01    user01    password
+User02    user02    password
+User03    user03    password
+User04    user04    password
+User05    user05    password
+User06    user06    password
+User07    user07    password
+User08    user08    password
+User09    user09    password
+User10    user10    password
+User11    user11    password
+User12    user12    password
+User13    user13    password
+User14    user14    password
+User15    user15    password
+User16    user16    password
+User17    user17    password
+User18    user18    password
+User19    user19    password
+User20    user20    password
+User21    user21    password
+User22    user22    password
+User23    user23    password
+User24    user24    password
+User25    user25    password
+User26    user26    password
+User27    user27    password
+User28    user28    password
+User29    user29    password
+User30    user30    password
+
+
+*** Keywords ***
+Open Browser
+    IF    $WS_ENDPOINTS
+        Connect To Browser    ${{$WS_ENDPOINTS.split(',')}}[${PABOTEXECUTIONPOOLID}]    browser=${BROWSER}
+    ELSE
+        New Browser    ${BROWSER}    headless=${HEADLESS}
+    END
+
+Open CarConfig
+    Open Browser
+    New Context    tracing=${{$LOG_LEVEL == "TRACE"}}
+    New Page    http://car.keyword-driven.de
+
+Login User
+    [Arguments]    ${username}    ${password}
+    Type Text    id=input_username    ${username}
+    Type Text    id=input_password    ${password}
+    Click    id=button_login
+    Get Title    ==    CarConfigurator
+    Get Url    ==    http://car.keyword-driven.de/list

@@ -1,5 +1,12 @@
 [<- Back](/README.md)
 
+# 1.1 Architecture
+
+Robot Framework Browser library is a Python library, which uses Playwright NodeJS and connects to it via gRPC protocol.
+
+![Robot Framework Browser library is a Python library, which uses Playwright NodeJS and connects to it via gRPC protocol.](Architecture.png)
+
+
 # 1.1.1 Interpreter environment management
 Use [pyenv](https://github.com/pyenv/pyenv) Python version management and Python
 [venv](https://docs.python.org/3/library/venv.html) for project specific dependencies management.

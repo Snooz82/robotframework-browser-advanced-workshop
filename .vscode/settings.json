@@ -21,5 +21,8 @@
     "robotcode.robocop.enabled": false,
     "robotcode.debug.attachPython": true,
     "debugpy.debugJustMyCode": false,
+    "robotcode.analysis.cache.ignoredLibraries": [
+        "Browser"
+    ],
     "workbench.iconTheme": "material-icon-theme"
 }

@@ -1,6 +1,6 @@
 [<- Back](/README.md)
 
-# 2.1 JavaScript Plugin-API
+# 2.3 JavaScript Plugin-API
 
 ```javascript
 exports.__esModule = true;

@@ -37,3 +37,13 @@ Upload file
     ...    contains
     ...    attached
     [Teardown]    Take Screenshot
+
+Test JS Keyword
+    Test Firefox
+
+Test All
+    New Browser    chromium
+    New Context
+    New Page    https://example.com
+    ${user_data}    Test All
+    Log    ${user_data}

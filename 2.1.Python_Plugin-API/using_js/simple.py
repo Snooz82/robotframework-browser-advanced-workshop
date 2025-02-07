@@ -18,3 +18,13 @@ class simple(LibraryComponent):
         values = list(self.call_js_keyword("getElementsValue", selector=selector))
         logger.info(f"Values: {values}")
         return values
+
+    @keyword
+    def start_tracing(self):
+        """Start tracing."""
+        self.call_js_keyword("startTracing")
+
+    @keyword
+    def stop_tracing(self, path: Path):
+        """Stop tracing."""
+        return self.call_js_keyword("stopTracing", tracefile=str(path.resolve().absolute()))

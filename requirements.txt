@@ -5,6 +5,7 @@ robotframework-pabot
 robotframework-robocop
 robotframework-tidy
 robotframework-debug
+psutil>=5.9.5
 mypy
 ruff
 pre-commit

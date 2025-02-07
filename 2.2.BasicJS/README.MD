@@ -1,6 +1,6 @@
 [<- Back](/README.md)
 
-# 1.5. Basic JavaScript
+# 2.2. Basic JavaScript
 
 ##  JS Environments: Browser vs NodeJS
   - Playwright == NodeJS

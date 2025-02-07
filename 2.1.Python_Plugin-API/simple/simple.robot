@@ -1,8 +1,5 @@
 *** Settings ***
-Library     Browser
-# ...       enable_playwright_debug=${True}
-...             plugins=${CURDIR}/SimplePythonPlugin.py,${CURDIR}/MyLib.py
-# ...    auto_closing_level=SUITE
+Library     Browser    plugins=${CURDIR}/SimplePythonPlugin.py,${CURDIR}/MyLib.py
 
 
 *** Test Cases ***

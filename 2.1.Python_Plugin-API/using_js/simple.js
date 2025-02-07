@@ -1,19 +1,17 @@
 exports.__esModule = true;
-exports.add = add_numbers
-exports.add_locator_clicker = add_locator_clicker
 exports.getElementsValue = getElementsValue
+exports.startTracing = startTracing
+exports.stopTracing = stopTracing
 
-
-async function add_numbers(arg1, arg2, logger, page, playwright) {
-    return await page.title();
+async function startTracing(context) {
+    await context.tracing.start({screenshots: true, snapshots: true});
 }
 
-async function add_locator_clicker(selector, page) {
-    await page.addLocatorHandler(page.locator(selector), async (locator) => {
-        await locator.click()
-        }
-    );
+async function stopTracing(tracefile, context, logger) {
+    logger(`Tracing file: ${tracefile}`);
+    await context.tracing.stop({ path: tracefile });
 }
+
 
 async function getElementsValue(selector, page, logger) {
     elements = await page.locator(selector).all();

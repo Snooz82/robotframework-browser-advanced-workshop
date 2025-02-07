@@ -1,0 +1,60 @@
+robot: 33.507 seconds
+
+
+inv test-pabot --reuse-browser --reuse-node --processes 2
+Total testing: 59.39 seconds
+Elapsed time:  34.72 seconds
+
+inv test-pabot --reuse-node --processes 2
+Total testing: 1 minute 7.30 seconds
+Elapsed time:  36.39 seconds
+
+inv test-pabot --reuse-browser --processes 2
+Total testing: 1 minute 8.80 seconds
+Elapsed time:  39.61 seconds
+
+inv test-pabot --processes 2
+Total testing: 1 minute 13.99 seconds
+Elapsed time:  40.15 seconds
+
+
+
+inv test-pabot --reuse-browser --reuse-node --processes 4
+Total testing: 1 minute 3.19 seconds
+Elapsed time:  18.0 seconds
+
+inv test-pabot --reuse-browser --reuse-node --processes 8
+Total testing: 1 minute 9.39 seconds
+Elapsed time:  10.31 seconds
+
+inv test-pabot --reuse-browser --reuse-node --processes 12
+Total testing: 1 minute 17.49 seconds
+Elapsed time:  8.19 seconds
+
+inv test-pabot --reuse-browser --reuse-node --processes 24
+Total testing: 1 minute 56.19 seconds
+Elapsed time:  7.1 seconds
+
+inv test-pabot --reuse-browser --reuse-node --processes 32
+Total testing: 2 minutes 1.60 seconds
+Elapsed time:  5.51 seconds
+
+
+
+
+
+inv test-pabot
+Total testing: 2 minutes 3.90 seconds
+Elapsed time:  12.66 seconds
+
+inv test-pabot --reuse-node
+Total testing: 1 minute 30.90 seconds
+Elapsed time:  9.40 seconds
+
+inv test-pabot --reuse-browser
+Total testing: 1 minute 32.99 seconds
+Elapsed time:  9.72 seconds
+
+inv test-pabot --reuse-node --reuse-browser
+Total testing: 1 minute 15.89 seconds
+Elapsed time:  8.16 seconds

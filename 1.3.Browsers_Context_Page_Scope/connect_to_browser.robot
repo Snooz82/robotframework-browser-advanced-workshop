@@ -1,5 +1,6 @@
 *** Settings ***
-Library    Browser
+Library     Browser
+
 
 *** Test Cases ***
 Launch Browser Server Generated wsEndpoint

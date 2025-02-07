@@ -1,17 +1,19 @@
 *** Settings ***
-Library         Browser    plugins=simple    # jsextension=${CURDIR}/simple.js
+Library         Browser    plugins=${CURDIR}/simple.py
 
 Suite Setup     New Browser    headless=False
 
 
 *** Test Cases ***
 Test
-    New Page
-    Add Locator Clicker    id=cookieconsent:body >> "Alle Cookies akzeptieren"
-    Go To    https://www.imbus.de
-    # Click    id=cookieconsent:body >> "Alle Cookies akzeptieren"
-    Click    "Jetzt Ticket sichern!" >> nth=0
-    Sleep    2 sec
+    New Context
+    Start Tracing
+    New Page    http://car.keyword-driven.de
+    Type Text    id=input_username    René
+    Type Text    id=input_password    Rohner
+    Click    id=button_login
+    Get Url    ends    list
+    [Teardown]    Stop Tracing    ${CURDIR}/Trace.zip
 
 TestCar
     New Page    http://car.keyword-driven.de
