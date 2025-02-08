@@ -182,14 +182,99 @@ This script has some different modes.
 
 See [RF-Browser-Architecture.pptx](../RF-Browser-Architecture.pptx) for more information.
 
-# 1.3.6 Scope
-Browser library has scope or life cycle of objects. Example automatic of closing pages
- 1.3.6 Life cycle of three pillars
-Browser library opens automatically new browser and context, if browser and context does not already exist, when
-new page is opened. Example these test case are identical:
+# 1.3.6 Scope for Browser, Context and Page
+Browser library has scope or life cycle of objects. Example automatic of closing pages is controlled
+library import `auto_closing_level`
+[import](https://marketsquare.github.io/robotframework-browser/Browser.html#Importing)
+parameter. Possible values are:
+- TEST
+- SUITE
+- MANUAL
+- KEEP
+
+When automatic closing level is TEST, contexts and pages that are created during a single test are automatically
+closed when the test ends. Contexts and pages that are created during suite setup are closed when the suite
+teardown ends.
+
+When automatic closing level is SUITE, all contexts and pages that are created during the test suite are closed
+when the suite teardown ends.
+
+When automatic closing level is MANUAL, nothing is closed automatically while the test execution is ongoing.
+All browsers, context and pages are automatically closed when test execution ends.
+
+When automatic closing level is KEEP, nothing is closed automatically while the test execution is ongoing.
+Also, nothing is closed when test execution ends,
+
+
+## 1.3.6.1 Scope with other objects
+Several keyword also change library attributes have scope or lifetime of an object. Example
+[Set Browser Timeout](https://marketsquare.github.io/robotframework-browser/Browser.html#Set%20Browser%20Timeout)
+changes the timeout and set timeout can be valid for certain duration. Possible values are:
+- Global
+- Suite
+- Test
+
+
+A Global scope will live forever until it is overwritten by another Global scope. Or locally
+temporarily overridden by a more narrow scope. A Suite scope will locally override the
+Global scope and live until the end of the Suite within it is set, or if it is overwritten by
+a later setting with Global or same scope. Children suite does inherit the setting from the parent
+suite but also may have its own local Suite setting that then will be inherited to its children suites.
+A Test or Task scope will be inherited from its parent suite but when set, lives until the end of that
+particular test or task.
+
+Keywords that change library attributes by a scope are:
+[Register Keyword To Run On Failure](https://marketsquare.github.io/robotframework-browser/Browser.html#Register%20Keyword%20To%20Run%20On%20Failure),
+[Set Assertion Formatters](https://marketsquare.github.io/robotframework-browser/Browser.html#Set%20Assertion%20Formatters),
+[Set Browser Timeout](https://marketsquare.github.io/robotframework-browser/Browser.html#Set%20Browser%20Timeout),
+[Set Retry Assertions For](https://marketsquare.github.io/robotframework-browser/Browser.html#Set%20Retry%20Assertions%20For),
+[Set Selector Prefix](https://marketsquare.github.io/robotframework-browser/Browser.html#Set%20Selector%20Prefix),
+[Set Strict Mode](https://marketsquare.github.io/robotframework-browser/Browser.html#Set%20Strict%20Mode)
+and [Show Keyword Banner](https://marketsquare.github.io/robotframework-browser/Browser.html#Show%20Keyword%20Banner)
+
+Write me a test that uses scope setting between test and proves that previous value of setting is restored.
+
 ```robotframework
 *** Settings ***
-Library    Browser
+Library    Browser    timeout=5s
+Suite Setup    New Page   http://localhost:7272/prefilled_email_form.html
+
+*** Test Cases ***
+Default Scope
+    TRY
+        Click     id=nothere
+    EXCEPT
+        Log To Console    With 5 seconds
+    END
+
+Page Scope
+    Set Browser Timeout    1s    Test
+    TRY
+        Click     id=nothere
+    EXCEPT
+        Log To Console    With one second
+    END
+
+Back to default scope
+    TRY
+        Click     id=nothere
+    EXCEPT
+        Log To Console    With 5 seconds
+    END
+
+```
+
+## # 1.3.6.2 Automatic open browser and context
+If default settings for browser or context are good for this test cas, then
+calling directly
+[New Page](https://marketsquare.github.io/robotframework-browser/Browser.html#New%20Page)
+automatically opens browser and context.
+
+Example these tests are same logically:
+```robotframework
+*** Settings ***
+Library     Browser
+
 
 *** Test Cases ***
 Automatic Opening Of Browser And Context
@@ -199,290 +284,28 @@ Is Same As
     New Browser
     New Context
     New Page    https://marketsquare.github.io/robotframework-browser
-
-```
-Run test suite with command:
-```bash
-robot --outputdir output 1.4.Browser_Context_Page/automatic_opening.robot
 ```
 
-Also closing browsers, contexts and pages happens automatically, expect on when KEEP is used.
-Automatic closing is controlled with library import:
-` auto_closing_level`, default is the `TEST`.
+## # 1.3.6.2 Reusing same browser
+If you call
+[New Browser](https://marketsquare.github.io/robotframework-browser/Browser.html#New%20Browser)
+multiple times with same arguments it does not by default create new browser
+object. Instead same browser is reused. If you want to create new browser
+use ` reuse_existing` argument as false.
 
-Default automatic closing means that context and pages are automatically closed after each tests
+
 ```robotframework
 *** Settings ***
 Library    Browser
 
 *** Test Cases ***
-Open Two Context And Pages On Default Autoclosing Level
-    New Context
-    New Page    https://marketsquare.github.io/robotframework-browser
-    Get Title    contains    Browser
+Reuse
+    New Browser
+    New Browser
+    ${catalog} =    Get Browser Catalog
+    Length Should Be    ${catalog}    1
+    New Browser    reuse_existing=False
+    ${catalog} =    Get Browser Catalog
+    Length Should Be    ${catalog}    2
 
-No Context Or Pages Open
-    TRY
-        Get Title    contains    Browser
-    EXCEPT    *No page open*    type=GLOB    AS   ${error}
-        Log    ${error}
-    END
-
-```
-
-Run test suite with command:
-```bash
-robot --outputdir output 1.4.Browser_Context_Page/life_cycle_test.robot
-```
-When `SUITE` auto closing level is defined then contexts and pages are closed when execution of single suite ends.
-Example when there are these test suites.
-```robotframework
-*** Settings ***
-Resource    imports.resource
-
-*** Test Cases ***
-Open Context And Page With SUITE Autoclosing Level
-    New Context
-    New Page    https://marketsquare.github.io/robotframework-browser
-    Get Title    contains    Browser
-
-Context And Page Are Open
-    Get Title    contains    Browser
-
-```
-
-```robotframework
-*** Settings ***
-Resource    imports.resource
-
-*** Test Cases ***
-Context And Page Are Not Open In Different Suite
-    TRY
-        Get Title    contains    Browser
-    EXCEPT    *No page open*    type=GLOB    AS   ${error}
-        Log    ${error}
-    END
-
-
-```
-
-And this resource file
-```robotframework
-*** Settings ***
-Library    Browser    auto_closing_level=SUITE
-
-```
-Run test suite with command:
-```bash
-robot --outputdir output 1.4.Browser_Context_Page/suite_autoclosing
-```
-
-When `MANUAL` auto closing level is defined, then browser, context and pages are closed at the end of the test
-execution. Example when there are these test suites:
-```robotframework
-*** Settings ***
-Resource    imports.resource
-
-*** Test Cases ***
-Open Context And Page With SUITE Autoclosing Level
-    New Context
-    New Page    https://marketsquare.github.io/robotframework-browser
-    Get Title    contains    Browser
-
-Context And Page Are Open
-    Get Title    contains    Browser
-
-```
-
-```robotframework
-*** Settings ***
-Resource    imports.resource
-
-*** Test Cases ***
-Context And Page Are Closed At End Of Test Execution
-    Get Title    contains    Browser
-
-```
-
-And this resource file
-```robotframework
-*** Settings ***
-Library    Browser    auto_closing_level=MANUAL
-
-```
-Run test suite with command:
-```bash
-robot --outputdir output 1.4.Browser_Context_Page/manual_autoclosing
-```
-
-When `KEEP` auto closing level is defined, then browser, context and pages are not closed. This is useful feature
-when developing test cases, but then user is responsible
-for terminating process left running, also including
-Browser library node process.. Example when there are this suite:
-
-```robotframework
-*** Settings ***
-Resource    imports.resource
-
-
-*** Test Cases ***
-Open Context And Page With KEEP Autoclosing Level
-    New Context
-    New Page    https://marketsquare.github.io/robotframework-browser
-    Get Title    contains    Browser
-
-Context And Page Are Open ForEver
-    Get Title    contains    Browser
-
-```
-
-And this resource file
-```robotframework
-*** Settings ***
-Library     Browser    auto_closing_level=KEEP
-
-```
-Run test suite with command:
-```bash
-robot --outputdir output 1.4.Browser_Context_Page/keep_autoclosing
-```
-
-After test execution look you favorite process monitor
-and notice the lefover processes, example:
-
-```bash
-ps -ax | grep robotframework-browser-advanced-workshop
-```
- 1.3.6 Catalog and Switching
-[Get Browser Catalog](https://marketsquare.github.io/robotframework-browser/Browser.html#Get%20Browser%20Catalog)
-list all currently open browsers, context and pages. Keyword returns data as list containing dictionaries.
-When there is this test:
-```robotframework
-*** Settings ***
-Resource    imports.resource
-
-*** Test Cases ***
-Get Browser Catalog Logs All Open Browser Contexrs And Pages
-    New Context
-    ${PAGE1} =    New Page    https://marketsquare.github.io/robotframework-browser
-    ${PAGE2} =    New Page    https://robotframework.org
-    ${CATALOG} =    Get Browser Catalog
-    Set Global Variable    ${PAGE1}
-    Set Global Variable    ${PAGE2}
-    Set Global Variable    ${CATALOG}
-
-```
-Run test suite with command:
-```bash
-robot --outputdir output 1.4.Browser_Context_Page/catalog/suite_1.robot
-```
-Then open the `log.html` from the output folder and loog the `Get Browser Catalog` keyword logging.
-
-When switch between pages, contexts and browsers can be done with
-[Switch Page](https://marketsquare.github.io/robotframework-browser/Browser.html#Switch%20Page),
-[Switch Context](https://marketsquare.github.io/robotframework-browser/Browser.html#Switch%20Context) and
-[Switch Browser](https://marketsquare.github.io/robotframework-browser/Browser.html#Switch%20Browser)
-keywords.
-
-When there are these test suites:
-```robotframework
-*** Settings ***
-Resource    imports.resource
-
-*** Test Cases ***
-Get Browser Catalog Logs All Open Browser Contexrs And Pages
-    ${BROWSER1} =    New Browser
-    ${CONTEXT1} =    New Context
-    ${PAGE1} =    New Page    https://marketsquare.github.io/robotframework-browser
-    ${PAGE2} =    New Page    https://robotframework.org
-    Get Browser Catalog
-    Set Global Variable    ${PAGE1}
-    Set Global Variable    ${PAGE2}
-    Set Global Variable    ${CONTEXT1}
-    Set Global Variable    ${BROWSER1}
-
-```
-
-and
-
-```robotframework
-*** Settings ***
-Resource    imports.resource
-*** Test Cases ***
-Open Example Pages
-    ${BROWSER2} =    New Browser
-    ${CONTEXT2} =    New Context
-    ${PAGE3} =    New Page    https://github.com/MarketSquare
-    ${CONTEXT3} =    New Context
-    ${PAGE4} =    New Page    https://robocon.io/
-    ${PAGE5} =    New Page    https://github.com/robotframework/
-    Get Title    ==    Robot Framework · GitHub
-    Set Global Variable    ${PAGE3}
-    Set Global Variable    ${PAGE4}
-    Set Global Variable    ${PAGE5}
-    Set Global Variable    ${CONTEXT2}
-    Set Global Variable    ${CONTEXT3}
-    Set Global Variable    ${BROWSER2}
-
-Switch Page
-    Switch Page    ${PAGE4}[page_id]
-    Get Title    ==    RoboCon
-    Switch Page    ${PAGE5}[page_id]
-    Get Title    ==    Robot Framework · GitHub
-    # By default is not possible to switch between context or browsers
-    # Magic words "CURRENT" and "ACTIVE" poinst to current context and browser
-    TRY
-        Switch Page    ${PAGE3}[page_id]    CURRENT    ACTIVE
-    EXCEPT    *No page for id page*    type=GLOB    AS   ${error}
-        Log    ${error}
-    END
-    # It possible to switch between context and/or browser by giving the ID
-    Switch Page    ${PAGE2}[page_id]    ${CONTEXT1}    ${BROWSER1}
-    # Also using magic words "ALL" or "ANY" allows searching between all contexs and browsers
-    [Teardown]    Switch Page    ${PAGE5}[page_id]    ANY    ALL
-
-Switch Context Also Changes Page
-    Switch Context    ${CONTEXT2}
-    Get Title    ==    marketsquare · GitHub
-    # By default is not possible to switch between browsers
-    TRY
-        Switch Context    ${CONTEXT1}
-    EXCEPT    *No context for id context=*    type=GLOB    AS   ${error}
-        Log    ${error}
-    END
-    # But Defining browser ID it is possible
-    Switch Context    ${CONTEXT1}    ${BROWSER1}
-    Get Title    ==    Robot Framework
-    # Instead of ID it is possible use magic word "ALL" to search from all browsers
-    Switch Context    ${CONTEXT3}    ALL
-    Get Title    ==    Robot Framework · GitHub
-
-Switch Browser Also Changes Page And Context
-    Switch Browser    ${BROWSER1}
-    Get Title    ==    Robot Framework
-    Get Browser Catalog
-
-```
-
-and
-
-```robotframework
-*** Settings ***
-Resource    imports.resource
-
-*** Test Cases ***
-Open New Page With Click
-    New Page    https://github.com/MarketSquare/robotframework-browser
-    Click    a[href="https://robotframework-browser.org/"]    left    1    ${None}    ${None}    ${None}    ${False}    ${False}    Meta
-    # NEW magic word changes to next opened page
-    Switch Page    NEW
-    Wait Until Network Is Idle    timeout=10s
-    Get Title    ==    Browser Library
-    Get Browser Catalog
-
-```
-
-Run test suites with command:
-```bash
-robot --outputdir output 1.4.Browser_Context_Page/catalog
 ```
