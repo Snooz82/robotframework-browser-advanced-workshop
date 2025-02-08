@@ -138,12 +138,11 @@ Start Coverage and Stop Coverage keyword.
 Library     Browser    enable_playwright_debug=True
 
 *** Test Cases ***
-Playwrifght debug logs
+Playwright coverage logs page 1
     New Page    https://www.google.com/
     Start Coverage
     Take Screenshot
     Stop Coverage
-
 
 ```
 
@@ -154,3 +153,51 @@ robot --outputdir output 1.2.Logging/example_coverage.robot
 
 Open the log.html file and see Stop Coverage keywords. Where is the
 coverage report.
+
+Enhance the previous test to open two pages and collect coverage each of them.
+Also remember to enabled raw data collection.
+
+```robotframework
+*** Settings ***
+Library     Browser    enable_playwright_debug=True
+
+
+*** Test Cases ***
+Playwright coverage logs page 1
+    New Page    https://www.google.com/
+    Start Coverage
+    Take Screenshot
+    Stop Coverage
+
+Playwright coverage logs page 2
+    New Page    https://www.google.com/
+    Start Coverage
+    Take Screenshot
+    Stop Coverage
+
+```
+
+Run test with command:
+```bash
+robot --outputdir output 1.2.Logging/example_coverage.robot
+```
+
+Open the log.html file and see Stop Coverage keywords from both pages.
+Where is the coverage report.
+
+Combining coverage reports can be done by rfbrowser entry command:
+
+```bash
+rfbrowser coverage  output/browser/coverage/ output/report
+```
+
+Investigate the combined coverage report.
+
+Report data is collected by
+[Playwright](https://playwright.dev/docs/api/class-coverage)
+and the report is created by
+[Monocart Coverage Reports](https://www.npmjs.com/package/monocart-coverage-reports)
+. Monocart offers plenty of options to tune the report for your needs. Example
+there are plenty of different kind of filtering options. Browser library
+supports Monocart
+[config file](https://www.npmjs.com/package/monocart-coverage-reports#config-file)
