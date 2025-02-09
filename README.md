@@ -43,4 +43,4 @@ folder, example `http://localhost:7272/prefilled_email_form.html`
 ## 3.1 [Waiting](3.1.Waiting/README.md)                                     (*Tatu*)
 ## 3.2 [AssertionEngine](3.2.AssertionEngine/README.md)                     (*Tatu*)
 ## 3.3 [Using Browser from Python](3.3.Using_Browser_from_Python/README.md) (*René*)
-## 3.4 [Localisation](3.4.Localisation/README.md)                           (*Tatu*)
+## 3.4 [Localisation](3.4.Localization/README.md)                           (*Tatu*)
