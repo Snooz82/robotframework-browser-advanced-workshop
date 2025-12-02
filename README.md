@@ -4,9 +4,9 @@ Repository with Training material
 
 # Installation
 
-Python >= 3.9 is required.
+Python >= 3.10 and NodeJS LTS >= 20 is required.
 
-just call `python bootstrap.py` to setup.
+just call `python bootstrap.py` to setup after cloning this repo.
 
 # Test app
 There is example test app in a `test_app/server/server.js` folder.
