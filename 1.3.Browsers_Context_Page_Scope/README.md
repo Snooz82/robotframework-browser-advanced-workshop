@@ -1,16 +1,18 @@
 [<- Back](/README.md)
 
 # 1.3.1 Browsers installation
-By default we install browser binaries packed with Playwright: Chromium, Firefox and Webkit.
-`rfbrowser init` command installs all those three. It is also possible to install only the
-selected browsers, example `rfbrowser init firefox` will install only Firefox. The those
-three browser binaries are installed in the Browser library installation directory and
-are isolated from the browser binaries installed in the system,
+By default we install browser binaries packed with Playwright: Chrome for testing, Firefox
+and Webkit. `rfbrowser install` or `rfbrowser init` command installs all those three. It
+is also possible to install only the selected browsers, example `rfbrowser install firefox`
+will install only Firefox. The those three browser binaries are installed in the Browser
+library installation directory and are isolated from the browser binaries installed in
+the system.
 
 It is also possible to install chrome, chrome-beta, msedge, msedge-beta and msedge-dev
-to your system with `rfbrowser init` But please note that are not isolated in same way
-as Chromium, Firefox and Webkit are. Instead installing example Chrome will replace
-the Chrome browser in your system. So be careful, if you decide to go this route.
+to your system with`rfbrowser install` or  `rfbrowser init` But please note that are not
+isolated in same way as Chrome for testing, Firefox and Webkit are. Instead installing
+example Chrome will replace the Chrome browser in your system. So be careful, if you
+decide to go this route.
 
 It is possible to skip browser binary installation and use your preferred way to manege
 browser binaries. Example in Docker container you may have browser binaries preinstalled
