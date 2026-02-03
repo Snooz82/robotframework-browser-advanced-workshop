@@ -17,7 +17,7 @@ permissions:
 env:
   SURGE_DOMAIN_BASE: ${{ github.event.repository.name }}
   # Adjust if your Docusaurus baseUrl changes (no leading slash, no trailing slash)
-  BASE_PATH: robotframework-browser-advanced-workshop
+  BASE_PATH: browser_advanced_workshop
 
 jobs:
   build:
