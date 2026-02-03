@@ -11,6 +11,7 @@ const zipPath = path.resolve(outputRoot, 'all-examples.zip');
 
 const IGNORED_DIRS = new Set(['.git', '.docusaurus', 'node_modules', '__pycache__']);
 const IGNORED_FILES = new Set(['.DS_Store']);
+const BLOCKED_EXTENSIONS = new Set(['.py', '.robot', '.resource']);
 
 async function pathExists(checkPath) {
   try {
@@ -23,6 +24,17 @@ async function pathExists(checkPath) {
 
 function toPosix(filePath) {
   return filePath.split(path.sep).join('/');
+}
+
+function getWebPath(relPath) {
+  const ext = path.extname(relPath).toLowerCase();
+  if (!BLOCKED_EXTENSIONS.has(ext)) {
+    return relPath;
+  }
+  const dir = path.dirname(relPath);
+  const base = path.basename(relPath);
+  const safeBase = base.replace(/\./g, '_') + '.txt';
+  return dir === '.' ? safeBase : toPosix(path.join(dir, safeBase));
 }
 
 async function walk(dir, rootDir) {
@@ -73,7 +85,10 @@ function buildTree(fileList) {
 }
 
 async function copyFileToOutput(file) {
-  const destPath = path.join(outputRoot, file.relPath);
+  if (!file.webPath) {
+    return;
+  }
+  const destPath = path.join(outputRoot, file.webPath);
   await fs.mkdir(path.dirname(destPath), { recursive: true });
   await fs.copyFile(file.fullPath, destPath);
 }
@@ -99,13 +114,28 @@ export async function generateExamplesAssets() {
     return;
   }
 
-  const files = await walk(examplesRoot, examplesRoot);
+  const files = await Promise.all(
+    (await walk(examplesRoot, examplesRoot)).map(async (file) => {
+      const ext = path.extname(file.relPath).toLowerCase();
+      const isBlocked = BLOCKED_EXTENSIONS.has(ext);
+      const contentBase64 = isBlocked
+        ? (await fs.readFile(file.fullPath)).toString('base64')
+        : undefined;
+      return {
+        ...file,
+        webPath: isBlocked ? null : getWebPath(file.relPath),
+        contentBase64,
+      };
+    })
+  );
   await Promise.all(files.map(copyFileToOutput));
 
   const manifest = {
     root: 'examples',
     files: files.map((file) => ({
       path: file.relPath,
+      webPath: file.webPath,
+      contentBase64: file.contentBase64,
     })),
     tree: buildTree(files),
   };

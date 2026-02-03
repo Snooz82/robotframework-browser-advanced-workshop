@@ -16,7 +16,7 @@ type TreeNode = {
 
 type Manifest = {
   root: string;
-  files: { path: string }[];
+  files: { path: string; webPath?: string | null; contentBase64?: string }[];
   tree: TreeNode;
 };
 
@@ -28,6 +28,14 @@ type ExamplesExplorerProps = {
   fileQueryParam?: string;
 };
 
+type RobotGrammarSetup = {
+  registry: unknown;
+  grammars: Map<string, string>;
+};
+
+let robotGrammarSetupPromise: Promise<RobotGrammarSetup | null> | null = null;
+let robotGrammarWasmLoaded = false;
+
 const DEFAULT_TITLE = 'Examples';
 
 function normalizePath(input?: string) {
@@ -35,6 +43,15 @@ function normalizePath(input?: string) {
     return '';
   }
   return input.replace(/^\/+|\/+$/g, '');
+}
+
+function decodeBase64ToText(base64: string) {
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return new TextDecoder('utf-8').decode(bytes);
 }
 
 function findNode(root: TreeNode, path: string) {
@@ -113,7 +130,6 @@ export default function ExamplesExplorer({
   const editorTheme = colorMode === 'dark' ? 'vs-dark' : 'vs';
   const { search, hash } = useLocation();
   const normalizedPath = useMemo(() => normalizePath(path), [path]);
-  const robotGrammarConfigured = useRef(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -189,16 +205,31 @@ export default function ExamplesExplorer({
     setSelectedPath(firstFile ?? null);
   }, [currentNode, requestedFile]);
 
+  const resolveEntry = useCallback(
+    (filePath: string) => manifest?.files.find((file) => file.path === filePath),
+    [manifest]
+  );
+
   useEffect(() => {
     if (!selectedPath) {
       setFileContent('');
       return;
     }
-    fetch(`${baseExamplesUrl}/${selectedPath}`)
+    const entry = resolveEntry(selectedPath);
+    if (entry?.contentBase64) {
+      setFileContent(decodeBase64ToText(entry.contentBase64));
+      return;
+    }
+    const webPath = entry?.webPath ?? selectedPath;
+    if (!webPath) {
+      setFileContent('');
+      return;
+    }
+    fetch(`${baseExamplesUrl}/${webPath}`)
       .then((res) => (res.ok ? res.text() : Promise.reject(new Error('File not found'))))
       .then((data) => setFileContent(data))
       .catch((err) => setFileContent(`Failed to load file: ${err.message}`));
-  }, [baseExamplesUrl, selectedPath]);
+  }, [baseExamplesUrl, selectedPath, resolveEntry]);
 
   const filesForDownload = useMemo(() => collectFiles(currentNode), [currentNode]);
 
@@ -210,7 +241,16 @@ export default function ExamplesExplorer({
       const zip = new JSZip();
       await Promise.all(
         filePaths.map(async (filePath) => {
-          const response = await fetch(`${baseExamplesUrl}/${filePath}`);
+          const entry = resolveEntry(filePath);
+          if (entry?.contentBase64) {
+            zip.file(filePath, decodeBase64ToText(entry.contentBase64));
+            return;
+          }
+          const webPath = entry?.webPath ?? filePath;
+          if (!webPath) {
+            return;
+          }
+          const response = await fetch(`${baseExamplesUrl}/${webPath}`);
           const data = await response.arrayBuffer();
           zip.file(filePath, data);
         })
@@ -223,7 +263,7 @@ export default function ExamplesExplorer({
       link.click();
       URL.revokeObjectURL(url);
     },
-    [baseExamplesUrl]
+    [baseExamplesUrl, resolveEntry]
   );
 
   const onResizeStart = useCallback((event: React.MouseEvent) => {
@@ -259,12 +299,10 @@ export default function ExamplesExplorer({
   }, []);
 
   const configureRobotFramework = useCallback(
-    async (monaco: typeof import('monaco-editor')) => {
-      if (robotGrammarConfigured.current) {
-        return;
-      }
-      robotGrammarConfigured.current = true;
-
+    async (
+      monaco: typeof import('monaco-editor'),
+      editor: import('monaco-editor').editor.IStandaloneCodeEditor
+    ) => {
       if (!monaco.languages.getLanguages().some((lang) => lang.id === 'robotframework')) {
         monaco.languages.register({
           id: 'robotframework',
@@ -277,45 +315,64 @@ export default function ExamplesExplorer({
         monaco.languages.setMonarchTokensProvider('robotframework', {
           tokenizer: {
             root: [
-              [/^\*{3}.+\*{3}$/u, 'keyword'],
-              [/^\s*#.*$/u, 'comment'],
-              [/\$\{[^}]+\}/u, 'variable'],
-              [/@\{[^}]+\}/u, 'variable'],
-              [/&\{[^}]+\}/u, 'variable'],
-              [/\[.+?\]/u, 'annotation'],
+              [/^\*{3}.+\*{3}$/, 'keyword'],
+              [/^\s*#.*$/, 'comment'],
+              [/\$\{[^}]+\}/, 'variable'],
+              [/@\{[^}]+\}/, 'variable'],
+              [/&\{[^}]+\}/, 'variable'],
+              [/\[.+?\]/, 'annotation'],
             ],
           },
         });
       };
 
       try {
-        const grammarResponse = await fetch(grammarUrl);
-        if (!grammarResponse.ok) {
+        if (!robotGrammarSetupPromise) {
+          robotGrammarSetupPromise = (async () => {
+            const grammarResponse = await fetch(grammarUrl);
+            if (!grammarResponse.ok) {
+              return null;
+            }
+            const grammarContent = await grammarResponse.text();
+            const [{ Registry }, { loadWASM }] = await Promise.all([
+              import('monaco-textmate'),
+              import('onigasm'),
+            ]);
+            if (!robotGrammarWasmLoaded) {
+              const onigasmResponse = await fetch(
+                'https://unpkg.com/onigasm@2.2.5/lib/onigasm.wasm'
+              );
+              if (onigasmResponse.ok) {
+                const wasm = await onigasmResponse.arrayBuffer();
+                await loadWASM(wasm);
+                robotGrammarWasmLoaded = true;
+              }
+            }
+            const registry = new Registry({
+              getGrammarDefinition: async () => ({
+                format: 'json',
+                content: grammarContent,
+              }),
+            });
+            const grammars = new Map<string, string>();
+            grammars.set('robotframework', 'source.robotframework');
+            return { registry, grammars };
+          })();
+        }
+
+        const setup = await robotGrammarSetupPromise;
+        if (!setup) {
           registerFallback();
           return;
         }
-        const grammarContent = await grammarResponse.text();
-        const [{ Registry }, { wireTmGrammars }, { loadWASM }] = await Promise.all([
-          import('monaco-textmate'),
-          import('monaco-editor-textmate'),
-          import('onigasm'),
-        ]);
-        const onigasmResponse = await fetch('https://unpkg.com/onigasm@2.2.5/lib/onigasm.wasm');
-        if (onigasmResponse.ok) {
-          const wasm = await onigasmResponse.arrayBuffer();
-          await loadWASM(wasm);
-        }
 
-        const registry = new Registry({
-          getGrammarDefinition: async () => ({
-            format: 'json',
-            content: grammarContent,
-          }),
-        });
-
-        const grammars = new Map();
-        grammars.set('robotframework', 'source.robotframework');
-        await wireTmGrammars(monaco, registry, grammars);
+        const { wireTmGrammars } = await import('monaco-editor-textmate');
+        await wireTmGrammars(
+          monaco,
+          setup.registry as never,
+          setup.grammars,
+          editor
+        );
       } catch (err) {
         registerFallback();
       }
@@ -399,7 +456,9 @@ export default function ExamplesExplorer({
                     language={getLanguageFromPath(selectedPath)}
                     value={fileContent}
                     theme={editorTheme}
-                    beforeMount={configureRobotFramework}
+                    onMount={(editor, monaco) => {
+                      configureRobotFramework(monaco, editor);
+                    }}
                     options={{
                       readOnly: true,
                       minimap: { enabled: false },

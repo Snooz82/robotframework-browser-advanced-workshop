@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import lightTheme from '@shikijs/themes/github-light';
 import darkTheme from '@shikijs/themes/dracula';
 import Quizdown from 'quizdown-extended/dist/quizdown.es.js';
@@ -22,9 +23,14 @@ export default function Quiz({ name, question, src }: QuizProps) {
 
   const [content, setContent] = useState<string | null>(question || null);
 
+  const quizBaseUrl = useBaseUrl('/');
+  const quizFilesBaseUrl = useBaseUrl('/quizzes/');
+
   const generateQuizId = (name: string) => {
     let page = typeof window !== 'undefined' ? window.location.pathname : '';
-    page = page.replace('/robotframework-browser-advanced-workshop/', '');
+    if (quizBaseUrl !== '/') {
+      page = page.replace(quizBaseUrl, '');
+    }
     let id = page.replace('docs/', '').replace('/', '_').replace('-', '_') + '_' + name.replace(' ', '_');
     return id.toLocaleLowerCase();
   };
@@ -47,7 +53,7 @@ export default function Quiz({ name, question, src }: QuizProps) {
   useEffect(() => {
     if (!src) return;
 
-    fetch('/robotframework-browser-advanced-workshop/quizzes/' + src)
+    fetch(`${quizFilesBaseUrl}${src}`)
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to fetch quiz: ${res.status}`);
         return res.text();
