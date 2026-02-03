@@ -422,7 +422,7 @@
         },
         "keyword_usage": {
             "name": "entity.name.function.keyword-call.robotframework",
-            "match": ".*",
+            "match": ".+",
             "captures": {
                 "0": {
                     "patterns": [
