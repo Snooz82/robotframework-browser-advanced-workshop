@@ -24,7 +24,7 @@ export default function Quiz({ name, question, src }: QuizProps) {
 
   const generateQuizId = (name: string) => {
     let page = typeof window !== 'undefined' ? window.location.pathname : '';
-    page = page.replace('/browser_advanced_workshop/', '');
+    page = page.replace('/robotframework-browser-advanced-workshop/', '');
     let id = page.replace('docs/', '').replace('/', '_').replace('-', '_') + '_' + name.replace(' ', '_');
     return id.toLocaleLowerCase();
   };
@@ -47,7 +47,7 @@ export default function Quiz({ name, question, src }: QuizProps) {
   useEffect(() => {
     if (!src) return;
 
-    fetch('/browser_advanced_workshop/quizzes/' + src)
+    fetch('/robotframework-browser-advanced-workshop/quizzes/' + src)
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to fetch quiz: ${res.status}`);
         return res.text();

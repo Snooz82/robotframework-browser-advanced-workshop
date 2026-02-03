@@ -12,7 +12,7 @@ const config = {
   title: 'Robot Framework Browser Advanced Workshop',
   tagline: 'Advanced workshop documentation for Robot Framework Browser',
   url: 'https://robotframework.org',
-  baseUrl: '/browser_advanced_workshop/',
+  baseUrl: '/robotframework-browser-advanced-workshop/',
   onBrokenLinks: 'warn',
   onBrokenAnchors: 'log',
   markdown: {
