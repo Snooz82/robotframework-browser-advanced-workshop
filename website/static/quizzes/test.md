@@ -7,7 +7,7 @@ shuffleAnswers: false
 
 The following variables are given.
 
-__Read__ the keyword explaination carefully to understand the given scenario!
+__Read__ the keyword explanation carefully to understand the given scenario!
 
 | Syntax | Description |
 | ----------- | ----------- |
@@ -118,7 +118,7 @@ Which of the following file contents of a file named `Suite.robot` is recognized
 
 > 1. **Correct** because `*** Tests ***` is the new stuff.<br/>
 > 2. wrong because thats not correct.<br/>
-> 3. wrong becuase that is also wrong.<br/>
+> 3. wrong because that is also wrong.<br/>
 >
 > ```robot
 > *** Settings ***
@@ -189,7 +189,7 @@ Which of the following file contents of a file named `Suite.robot` is recognized
   *** Variables ***
   ${DEFAULT_DB}    localhost
   ```
-    > No excutable task or test case found. That is a resource file.
+    > No executable task or test case found. That is a resource file.
 
 - [ ] ```robot
   *** Settings ***

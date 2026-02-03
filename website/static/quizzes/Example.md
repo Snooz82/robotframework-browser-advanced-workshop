@@ -125,7 +125,7 @@ _(Use Drag&Drop to match)_
 
 ### In the given scenario which of the test cases logs only a single entry
 
-_Read_ the keyword explaination carefully to understand the given scenario!
+_Read_ the keyword explanation carefully to understand the given scenario!
 
 ## _Keyword:_ Log Many
 

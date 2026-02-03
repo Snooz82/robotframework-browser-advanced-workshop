@@ -14,7 +14,7 @@ async function stopTracing(tracefile, context, logger) {
 
 
 async function getElementsValue(selector, page, logger) {
-    elements = await page.locator(selector).all();
+    let elements = await page.locator(selector).all();
     const values = [];
     for (let element of elements) {
         let value = await element.inputValue();

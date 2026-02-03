@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import lightTheme from '@shikijs/themes/github-light';
 import darkTheme from '@shikijs/themes/dracula';
@@ -18,14 +17,14 @@ interface QuizProps {
 }
 
 export default function Quiz({ name, question, src }: QuizProps) {
-  const addQuizResult = useQuizStore((state) => state.addQuizResult);
+  // const addQuizResult = useQuizStore((state) => state.addQuizResult);
   // const resultBaseUrl = useBaseUrl('/quizResults');
 
   const [content, setContent] = useState<string | null>(question || null);
 
   const generateQuizId = (name: string) => {
     let page = typeof window !== 'undefined' ? window.location.pathname : '';
-    page = page.replace('/robotframework-RFCP-syllabus/', '');
+    page = page.replace('/browser_advanced_workshop/', '');
     let id = page.replace('docs/', '').replace('/', '_').replace('-', '_') + '_' + name.replace(' ', '_');
     return id.toLocaleLowerCase();
   };
@@ -48,7 +47,7 @@ export default function Quiz({ name, question, src }: QuizProps) {
   useEffect(() => {
     if (!src) return;
 
-    fetch('/robotframework-RFCP-syllabus/quizzes/' + src)
+    fetch('/browser_advanced_workshop/quizzes/' + src)
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to fetch quiz: ${res.status}`);
         return res.text();
