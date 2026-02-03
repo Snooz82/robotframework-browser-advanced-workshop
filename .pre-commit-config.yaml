@@ -4,11 +4,14 @@ repos:
     hooks:
       - id: mypy
         name: mypy
-        description: 'Run mypy for static type checking'
+        description: ''
         entry: mypy
         language: python
-        types_or: [python, pyi]
+        'types_or': [python, pyi]
+        args: ["--ignore-missing-imports", "--scripts-are-modules"]
         require_serial: true
+        additional_dependencies: []
+        exclude: 'website/static/.*'
 
   # Ruff linter for Python files
   - repo: local
@@ -30,21 +33,21 @@ repos:
         require_serial: true
 
   # Tidy formatter for Robot Framework (.robot and .resource files)
-  - repo: local
-    hooks:
-      - id: robotidy
-        name: robotidy
-        entry: robotidy
-        files: '.*\.(robot|resource)$'
-        language: python
-        description: "RobotFramework source code formatter"
-
   # Robocop linter for Robot Framework (.robot and .resource files)
   - repo: local
     hooks:
       - id: robocop
         name: robocop
-        entry: robocop
-        files: '.*\.(robot|resource)$'
+        description: "Robot Framework linter"
+        entry: robocop check --force-exclude
         language: python
-        description: "RobotFramework source code linter"
+        files: '.*\.(robot|resource)$'
+        minimum_pre_commit_version: "2.9.2"
+
+      - id: robocop-format
+        name: robocop-format
+        description: "Robot Framework formatter"
+        entry: robocop format --force-exclude
+        language: python
+        files: '.*\.(robot|resource)$'
+        minimum_pre_commit_version: "2.9.2"

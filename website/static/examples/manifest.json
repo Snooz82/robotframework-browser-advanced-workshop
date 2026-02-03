@@ -1,0 +1,385 @@
+{
+  "root": "examples",
+  "files": [
+    {
+      "path": "1/1.2/example_coverage.robot"
+    },
+    {
+      "path": "1/1.2/example_logging_on_error.robot"
+    },
+    {
+      "path": "1/1.2/example_pw_logging_enabled.robot"
+    },
+    {
+      "path": "1/1.2/example_pw_trace.robot"
+    },
+    {
+      "path": "1/1.3/automatic_opening.robot"
+    },
+    {
+      "path": "1/1.3/chrome_channel.robot"
+    },
+    {
+      "path": "1/1.3/connect_to_browser.robot"
+    },
+    {
+      "path": "1/1.3/mobile_testing.robot"
+    },
+    {
+      "path": "1/1.3/reuse_existing.robot"
+    },
+    {
+      "path": "1/1.3/scope_setting.robot"
+    },
+    {
+      "path": "2/2.1/JSPlugin.js"
+    },
+    {
+      "path": "2/2.1/PythonPlugin.py"
+    },
+    {
+      "path": "2/2.1/PythonPluginExample.robot"
+    },
+    {
+      "path": "2/2.1/SimplePythonPlugin.py"
+    },
+    {
+      "path": "2/2.1/mylib.py"
+    },
+    {
+      "path": "2/2.1/simple.js"
+    },
+    {
+      "path": "2/2.1/simple.py"
+    },
+    {
+      "path": "2/2.1/simple.robot"
+    },
+    {
+      "path": "2/2.1/supersimple.robot"
+    },
+    {
+      "path": "2/2.2/Evaluate.robot"
+    },
+    {
+      "path": "2/2.2/env_script.js"
+    },
+    {
+      "path": "2/2.2/equal_script.js"
+    },
+    {
+      "path": "2/2.2/functions.js"
+    },
+    {
+      "path": "2/2.2/lambda.js"
+    },
+    {
+      "path": "2/2.2/objects.js"
+    },
+    {
+      "path": "2/2.2/var_script.js"
+    },
+    {
+      "path": "2/2.3/JavaScriptPluginExample.robot"
+    },
+    {
+      "path": "2/2.3/js_keywords.js"
+    },
+    {
+      "path": "3/3.1/assertion_timeout.robot"
+    },
+    {
+      "path": "3/3.1/pw_waiting.robot"
+    },
+    {
+      "path": "3/3.2/PythonAssertionPlugin.py"
+    },
+    {
+      "path": "3/3.2/PythonPluginExample.robot"
+    },
+    {
+      "path": "3/3.2/assertion_formatters.robot"
+    },
+    {
+      "path": "3/3.2/example.robot"
+    },
+    {
+      "path": "3/3.3/CarConfig.robot"
+    },
+    {
+      "path": "3/3.3/CarConfigLibrary.py"
+    },
+    {
+      "path": "README.md"
+    }
+  ],
+  "tree": {
+    "name": "examples",
+    "path": "",
+    "type": "dir",
+    "children": [
+      {
+        "name": "1",
+        "path": "1",
+        "type": "dir",
+        "children": [
+          {
+            "name": "1.2",
+            "path": "1/1.2",
+            "type": "dir",
+            "children": [
+              {
+                "name": "example_coverage.robot",
+                "path": "1/1.2/example_coverage.robot",
+                "type": "file"
+              },
+              {
+                "name": "example_logging_on_error.robot",
+                "path": "1/1.2/example_logging_on_error.robot",
+                "type": "file"
+              },
+              {
+                "name": "example_pw_logging_enabled.robot",
+                "path": "1/1.2/example_pw_logging_enabled.robot",
+                "type": "file"
+              },
+              {
+                "name": "example_pw_trace.robot",
+                "path": "1/1.2/example_pw_trace.robot",
+                "type": "file"
+              }
+            ]
+          },
+          {
+            "name": "1.3",
+            "path": "1/1.3",
+            "type": "dir",
+            "children": [
+              {
+                "name": "automatic_opening.robot",
+                "path": "1/1.3/automatic_opening.robot",
+                "type": "file"
+              },
+              {
+                "name": "chrome_channel.robot",
+                "path": "1/1.3/chrome_channel.robot",
+                "type": "file"
+              },
+              {
+                "name": "connect_to_browser.robot",
+                "path": "1/1.3/connect_to_browser.robot",
+                "type": "file"
+              },
+              {
+                "name": "mobile_testing.robot",
+                "path": "1/1.3/mobile_testing.robot",
+                "type": "file"
+              },
+              {
+                "name": "reuse_existing.robot",
+                "path": "1/1.3/reuse_existing.robot",
+                "type": "file"
+              },
+              {
+                "name": "scope_setting.robot",
+                "path": "1/1.3/scope_setting.robot",
+                "type": "file"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "2",
+        "path": "2",
+        "type": "dir",
+        "children": [
+          {
+            "name": "2.1",
+            "path": "2/2.1",
+            "type": "dir",
+            "children": [
+              {
+                "name": "JSPlugin.js",
+                "path": "2/2.1/JSPlugin.js",
+                "type": "file"
+              },
+              {
+                "name": "PythonPlugin.py",
+                "path": "2/2.1/PythonPlugin.py",
+                "type": "file"
+              },
+              {
+                "name": "PythonPluginExample.robot",
+                "path": "2/2.1/PythonPluginExample.robot",
+                "type": "file"
+              },
+              {
+                "name": "SimplePythonPlugin.py",
+                "path": "2/2.1/SimplePythonPlugin.py",
+                "type": "file"
+              },
+              {
+                "name": "mylib.py",
+                "path": "2/2.1/mylib.py",
+                "type": "file"
+              },
+              {
+                "name": "simple.js",
+                "path": "2/2.1/simple.js",
+                "type": "file"
+              },
+              {
+                "name": "simple.py",
+                "path": "2/2.1/simple.py",
+                "type": "file"
+              },
+              {
+                "name": "simple.robot",
+                "path": "2/2.1/simple.robot",
+                "type": "file"
+              },
+              {
+                "name": "supersimple.robot",
+                "path": "2/2.1/supersimple.robot",
+                "type": "file"
+              }
+            ]
+          },
+          {
+            "name": "2.2",
+            "path": "2/2.2",
+            "type": "dir",
+            "children": [
+              {
+                "name": "Evaluate.robot",
+                "path": "2/2.2/Evaluate.robot",
+                "type": "file"
+              },
+              {
+                "name": "env_script.js",
+                "path": "2/2.2/env_script.js",
+                "type": "file"
+              },
+              {
+                "name": "equal_script.js",
+                "path": "2/2.2/equal_script.js",
+                "type": "file"
+              },
+              {
+                "name": "functions.js",
+                "path": "2/2.2/functions.js",
+                "type": "file"
+              },
+              {
+                "name": "lambda.js",
+                "path": "2/2.2/lambda.js",
+                "type": "file"
+              },
+              {
+                "name": "objects.js",
+                "path": "2/2.2/objects.js",
+                "type": "file"
+              },
+              {
+                "name": "var_script.js",
+                "path": "2/2.2/var_script.js",
+                "type": "file"
+              }
+            ]
+          },
+          {
+            "name": "2.3",
+            "path": "2/2.3",
+            "type": "dir",
+            "children": [
+              {
+                "name": "JavaScriptPluginExample.robot",
+                "path": "2/2.3/JavaScriptPluginExample.robot",
+                "type": "file"
+              },
+              {
+                "name": "js_keywords.js",
+                "path": "2/2.3/js_keywords.js",
+                "type": "file"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "3",
+        "path": "3",
+        "type": "dir",
+        "children": [
+          {
+            "name": "3.1",
+            "path": "3/3.1",
+            "type": "dir",
+            "children": [
+              {
+                "name": "assertion_timeout.robot",
+                "path": "3/3.1/assertion_timeout.robot",
+                "type": "file"
+              },
+              {
+                "name": "pw_waiting.robot",
+                "path": "3/3.1/pw_waiting.robot",
+                "type": "file"
+              }
+            ]
+          },
+          {
+            "name": "3.2",
+            "path": "3/3.2",
+            "type": "dir",
+            "children": [
+              {
+                "name": "PythonAssertionPlugin.py",
+                "path": "3/3.2/PythonAssertionPlugin.py",
+                "type": "file"
+              },
+              {
+                "name": "PythonPluginExample.robot",
+                "path": "3/3.2/PythonPluginExample.robot",
+                "type": "file"
+              },
+              {
+                "name": "assertion_formatters.robot",
+                "path": "3/3.2/assertion_formatters.robot",
+                "type": "file"
+              },
+              {
+                "name": "example.robot",
+                "path": "3/3.2/example.robot",
+                "type": "file"
+              }
+            ]
+          },
+          {
+            "name": "3.3",
+            "path": "3/3.3",
+            "type": "dir",
+            "children": [
+              {
+                "name": "CarConfig.robot",
+                "path": "3/3.3/CarConfig.robot",
+                "type": "file"
+              },
+              {
+                "name": "CarConfigLibrary.py",
+                "path": "3/3.3/CarConfigLibrary.py",
+                "type": "file"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "README.md",
+        "path": "README.md",
+        "type": "file"
+      }
+    ]
+  }
+}

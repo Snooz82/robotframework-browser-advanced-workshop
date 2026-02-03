@@ -6,6 +6,7 @@ warn_return_any = true
 warn_no_return = true
 warn_unreachable = true
 pretty = true
+exclude = ["website/static"]
 
 [tool.ruff]
 fix = false
@@ -58,11 +59,26 @@ select = [
 ]
 
 [tool.robocop]
-paths = ["."]
-include = ["W0504", "W0302"]
-exclude = ["W0201", "W0202", "W0203", "W0504"]
+include = [
+    ".robot",
+    ".resource",
+]
+exclude = [
+    "ignore_me.robot",
+]
+
+[tool.robocop.lint]
+select = [
+    "LEN04",
+    "NAME02",
+]
+ignore = [
+    "DOC01",
+    "DOC02",
+    "DOC03",
+    "LEN04",
+]
 reports = [
     "rules_by_id",
-    "scan_timer"
+    "scan_timer",
 ]
-ignore = ["ignore_me.robot"]

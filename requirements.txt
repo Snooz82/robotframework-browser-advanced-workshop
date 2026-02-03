@@ -1,5 +1,5 @@
-robotframework-browser >= 19.3.0
-robotframework >= 7.2.0
+robotframework-browser >= 19.12.4
+robotframework >= 7.4.0
 robotframework-retryfailed
 robotframework-pabot
 robotframework-robocop
