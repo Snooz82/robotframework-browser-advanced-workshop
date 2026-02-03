@@ -1,0 +1,153 @@
+name: PR Preview (Surge, gated by review)
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review, edited, labeled]
+  pull_request:
+    types: [closed]  # for teardown
+  push:
+    branches: [main]
+
+# Token perms needed for commenting + reading artifacts
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+env:
+  SURGE_DOMAIN_BASE: ${{ github.event.repository.name }}
+  # Adjust if your Docusaurus baseUrl changes (no leading slash, no trailing slash)
+  BASE_PATH: robotframework-browser-advanced-workshop
+
+jobs:
+  build:
+    # Build PRs (without secrets) and main branch pushes
+    if: ${{ (github.event_name == 'pull_request_target' && github.event.pull_request.draft == false) || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    name: Build PR
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./website
+    steps:
+      - name: Checkout PR head (read-only)
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Checkout main commit
+        if: github.event_name == 'push'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check numbering and links
+        run: python tools/gen_numbering.py
+        working-directory: .
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-build
+          path: website/build
+          if-no-files-found: error
+          retention-days: 5
+
+  deploy:
+    # Deploy PR previews (with gate) and automatic main previews
+    if: ${{ (github.event_name == 'pull_request_target' && github.event.pull_request.draft == false) || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    name: Deploy Preview to Surge
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event_name == 'pull_request_target' && 'preview' || 'main-preview' }}
+      url: ${{ steps.deployed.outputs.preview_url }}
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: pr-build
+          path: ./build
+
+      - name: Install Surge CLI
+        run: npm i -g surge
+
+      - name: Compute preview domain + path
+        id: dom
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request_target" ]; then
+            domain="${{ env.SURGE_DOMAIN_BASE }}-pr-${{ github.event.number }}.surge.sh"
+          else
+            domain="${{ env.SURGE_DOMAIN_BASE }}.surge.sh"
+          fi
+          echo "domain=$domain" >> $GITHUB_OUTPUT
+          echo "path=/${{ env.BASE_PATH }}/" >> $GITHUB_OUTPUT
+
+      # Stage the Docusaurus output under the baseUrl path (so it serves at /<BASE_PATH>/)
+      - name: Stage site under base path
+        run: |
+          mkdir -p ./staging/${{ env.BASE_PATH }}
+          # Move entire built site into the subpath
+          shopt -s dotglob
+          mv ./build/* ./staging/${{ env.BASE_PATH }}/
+          # Optional: keep a root 200.html/404.html if you want nicer root errors
+          # but not required; we'll serve only from /<BASE_PATH>/
+
+      - name: Deploy to Surge
+        id: deployed
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}   # environment secret on "preview"
+        run: |
+          surge --project ./staging \
+                --domain ${{ steps.dom.outputs.domain }} \
+                --token "$SURGE_TOKEN"
+          echo "preview_url=https://${{ steps.dom.outputs.domain }}${{ steps.dom.outputs.path }}" >> $GITHUB_OUTPUT
+
+      # Comment using a purpose-built action (more robust than raw API for forked PRs)
+      - name: Comment with preview URL
+        if: github.event_name == 'pull_request_target'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.number }}
+          body: |
+            🚀 Preview deployed to **${{ steps.deployed.outputs.preview_url }}**
+
+  teardown:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    name: Teardown Surge preview
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Surge CLI
+        run: npm i -g surge
+      - name: Compute domain
+        id: dom
+        run: |
+          echo "domain=${{ github.event.repository.name }}-pr-${{ github.event.number }}.surge.sh" >> $GITHUB_OUTPUT
+      - name: Teardown
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: |
+          surge teardown "${{ steps.dom.outputs.domain }}" --token "$SURGE_TOKEN" || true
