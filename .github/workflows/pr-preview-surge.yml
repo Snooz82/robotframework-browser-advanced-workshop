@@ -16,8 +16,8 @@ permissions:
 
 env:
   SURGE_DOMAIN_BASE: ${{ github.event.repository.name }}
-  # Adjust if your Docusaurus baseUrl changes (no leading slash, no trailing slash)
-  BASE_PATH: robotframework-browser-advanced-workshop
+  # baseUrl is '/', so deploy at root
+  BASE_PATH: ""
 
 jobs:
   build:
@@ -94,24 +94,14 @@ jobs:
             domain="${{ env.SURGE_DOMAIN_BASE }}.surge.sh"
           fi
           echo "domain=$domain" >> $GITHUB_OUTPUT
-          echo "path=/${{ env.BASE_PATH }}/" >> $GITHUB_OUTPUT
-
-      # Stage the Docusaurus output under the baseUrl path (so it serves at /<BASE_PATH>/)
-      - name: Stage site under base path
-        run: |
-          mkdir -p ./staging/${{ env.BASE_PATH }}
-          # Move entire built site into the subpath
-          shopt -s dotglob
-          mv ./build/* ./staging/${{ env.BASE_PATH }}/
-          # Optional: keep a root 200.html/404.html if you want nicer root errors
-          # but not required; we'll serve only from /<BASE_PATH>/
+          echo "path=/" >> $GITHUB_OUTPUT
 
       - name: Deploy to Surge
         id: deployed
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}   # environment secret on "preview"
         run: |
-          surge --project ./staging \
+          surge --project ./build \
                 --domain ${{ steps.dom.outputs.domain }} \
                 --token "$SURGE_TOKEN"
           echo "preview_url=https://${{ steps.dom.outputs.domain }}${{ steps.dom.outputs.path }}" >> $GITHUB_OUTPUT
