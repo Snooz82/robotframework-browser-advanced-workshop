@@ -1,0 +1,135 @@
+.container {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  background: var(--ifm-color-primary);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.buttonSecondary {
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--ifm-color-primary);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: var(--tree-width, 240px) 8px minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.content[style*="grid-template-columns: minmax(0, 1fr)"] {
+  gap: 0;
+}
+
+.treePane {
+  padding-right: 0.75rem;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.splitter {
+  cursor: col-resize;
+  background: transparent;
+  position: relative;
+}
+
+.splitter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--ifm-color-emphasis-200);
+}
+
+.editorPane {
+  min-height: 600px;
+  width: 100%;
+}
+
+.folder {
+  margin-bottom: 0.75rem;
+}
+
+.folderLabel {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.folderChildren {
+  display: grid;
+  gap: 0.35rem;
+  padding-left: 0.75rem;
+}
+
+.file,
+.fileActive {
+  text-align: left;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.fileActive {
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-darkest);
+}
+
+.loading,
+.error,
+.empty {
+  padding: 0.75rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .treePane {
+    border-right: none;
+    border-bottom: 1px solid var(--ifm-color-emphasis-200);
+    padding-right: 0;
+    padding-bottom: 0.75rem;
+  }
+
+  .splitter {
+    display: none;
+  }
+}

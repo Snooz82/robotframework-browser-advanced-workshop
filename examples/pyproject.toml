@@ -29,7 +29,6 @@ ignore = [
   "INP001",  # Implicit Namespace
   "T201",  # Print statements
   "PYI041", # `float` instead of `int | float`
-  "PT028", # test function has default argument value
 ]
 select = [
   "E",
