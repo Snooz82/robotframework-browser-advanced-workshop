@@ -20,5 +20,5 @@ ${SLOW_PAGE} =              ${ROOT_URL}slowpage.html
 ${WEBCOMPONENT_PAGE} =      ${ROOT_URL}webcomponent.html
 ${LINKER_URL} =             ${ROOT_URL}links/link1.html
 ${SPACES_URL} =             ${ROOT_URL}spaces.html
-${TABLES_URL} =             ${ROOT_URL}tables.html
 ${DELAYED_LOAD} =           ${ROOT_URL}delayed-load.html
+${TABLES_URL} =             ${ROOT_URL}tables.html
