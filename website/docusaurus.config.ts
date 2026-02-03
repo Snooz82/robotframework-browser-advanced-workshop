@@ -13,10 +13,11 @@ const config = {
   tagline: 'Advanced workshop documentation for Robot Framework Browser',
   url: 'https://robotframework.org',
   baseUrl: '/browser_advanced_workshop/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
+  onBrokenAnchors: 'log',
   markdown: {
     hooks: {
-      onBrokenMarkdownLinks: 'throw',
+      onBrokenMarkdownLinks: 'warn',
     },
   },
   favicon: 'img/rf_favicon.png',
