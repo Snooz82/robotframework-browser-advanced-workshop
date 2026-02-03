@@ -1,0 +1,53 @@
+repos:
+  # mypy linter for Python files
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        description: ''
+        entry: mypy
+        language: python
+        'types_or': [python, pyi]
+        args: ["--ignore-missing-imports", "--scripts-are-modules"]
+        require_serial: true
+        additional_dependencies: []
+        exclude: 'website/static/.*'
+
+  # Ruff linter for Python files
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: ruff-format
+        description: "Run 'ruff format' for extremely fast Python formatting"
+        entry: ruff format --force-exclude
+        language: python
+        types_or: [python, pyi, jupyter]
+        require_serial: true
+
+      - id: ruff
+        name: ruff
+        description: "Run 'ruff' for extremely fast Python linting"
+        entry: ruff check --force-exclude
+        language: python
+        types_or: [python, pyi, jupyter]
+        require_serial: true
+
+  # Tidy formatter for Robot Framework (.robot and .resource files)
+  # Robocop linter for Robot Framework (.robot and .resource files)
+  - repo: local
+    hooks:
+      - id: robocop
+        name: robocop
+        description: "Robot Framework linter"
+        entry: robocop check --force-exclude
+        language: python
+        files: '.*\.(robot|resource)$'
+        minimum_pre_commit_version: "2.9.2"
+
+      - id: robocop-format
+        name: robocop-format
+        description: "Robot Framework formatter"
+        entry: robocop format --force-exclude
+        language: python
+        files: '.*\.(robot|resource)$'
+        minimum_pre_commit_version: "2.9.2"

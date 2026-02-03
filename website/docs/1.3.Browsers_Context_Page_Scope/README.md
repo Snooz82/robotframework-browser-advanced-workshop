@@ -23,7 +23,7 @@ and you may want to install only Browser library and it Python and NodeJS depend
 
 [examples](#1.3.example)
 
-[reuse_existing.robot](#1.3.example?file=reuse_existing.robot)
+[reuse_existing.robot](?file=reuse_existing.robot#1.3.example)
 
 
 ## 1.3.1.1 Using system Chrome or Edge
@@ -174,7 +174,7 @@ When using Pabot each Thread starts and stops Robot Framework instances. That me
 
 What if we could **REUSE** the node process of RF Browser and also start only one browser per thread and just connect to it???
 
-see [tasks.py](../tasks.py) for an example implementation.
+see [tasks.py](/downloads/tasks.py) for an example implementation.
 
 Steps to execute:
 1. determine the number of physical cores on your machine
@@ -191,7 +191,7 @@ This script has some different modes.
 - `--browser` This can be `chromium`, `firefox` or `webkit` and defines which browser is used.
 - `--processes` This defines how many processes are started in parallel. If set to `0` the amount of physical cores is used.
 
-See [RF-Browser-Architecture.pptx](../RF-Browser-Architecture.pptx) for more information.
+See [RF-Browser-Architecture.pptx](/downloads/RF-Browser-Architecture.pptx) for more information.
 
 # 1.3.6 Scope for Browser, Context and Page
 Browser library has scope or life cycle of objects. Example automatic of closing pages is controlled

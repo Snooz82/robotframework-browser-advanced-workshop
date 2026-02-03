@@ -134,3 +134,4 @@ output
 playwright-log.txt
 .RESOURCES
 website/.docusaurus
+website/static/examples

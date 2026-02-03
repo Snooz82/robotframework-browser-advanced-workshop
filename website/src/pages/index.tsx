@@ -11,7 +11,7 @@ import styles from './index.module.css';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
-  const examplesZipUrl = useBaseUrl('/examples/all-examples.zip');
+  const examplesZipUrl = 'pathname:///examples/all-examples.zip';
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">

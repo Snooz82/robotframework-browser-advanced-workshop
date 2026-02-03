@@ -1,0 +1,12 @@
+robotframework-browser >= 19.12.4
+robotframework >= 7.4.0
+robotframework-retryfailed
+robotframework-pabot
+robotframework-robocop
+robotframework-tidy
+robotframework-debug
+psutil>=5.9.5
+mypy
+ruff
+pre-commit
+invoke

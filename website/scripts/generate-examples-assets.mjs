@@ -90,7 +90,7 @@ async function generateZip(fileList) {
   await fs.writeFile(zipPath, buffer);
 }
 
-async function main() {
+export async function generateExamplesAssets() {
   await fs.mkdir(outputRoot, { recursive: true });
 
   if (!(await pathExists(examplesRoot))) {
@@ -117,4 +117,6 @@ async function main() {
   }
 }
 
-main();
+if (import.meta.url === `file://${process.argv[1]}`) {
+  generateExamplesAssets();
+}

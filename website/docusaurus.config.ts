@@ -178,6 +178,15 @@ const config = {
       },
     }),
   plugins: [
+    function examplesAssetsPlugin() {
+      return {
+        name: 'examples-assets',
+        async loadContent() {
+          const module = await import('./scripts/generate-examples-assets.mjs');
+          await module.generateExamplesAssets();
+        },
+      };
+    },
     require.resolve('docusaurus-lunr-search'),
     function webpackFallbacks() {
       return {
