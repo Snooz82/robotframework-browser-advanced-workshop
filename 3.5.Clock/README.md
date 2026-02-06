@@ -46,5 +46,5 @@ Write test that will pause time 90 minutes in the future and verify that time is
 Then advance time again 30 minutes in the future and verify that time is set.
 Lastly free the clock and observe that time is passing.
 
-# Solutions
+# Solution
 Solution can be found from [clock.robot](clock.robot) file.
