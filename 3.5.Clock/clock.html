@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Digital 24-Hour Clock</title>
+	<style>
+		:root{--bg:#0b0f1a;--fg:#e6eef8}
+		html,body{height:100%}
+		body{margin:0;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+		.wrap{display:flex;flex-direction:column;align-items:center}
+		.clock{font-size:10vw;line-height:1;letter-spacing:0.02em;font-weight:600}
+		.small{margin-top:.5rem;font-size:1.25rem;opacity:.75}
+		.hint{position:fixed;left:12px;bottom:12px;opacity:.65;font-size:13px}
+		@media (min-width:1100px){.clock{font-size:110px}.small{font-size:20px}}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div id="clock" class="clock" role="timer" aria-live="polite" aria-atomic="true">00:00:00</div>
+		<div class="small">24-hour format — HH:MM:SS</div>
+	</div>
+	<script>
+		function pad(n){return n.toString().padStart(2,'0')}
+		function updateClock(){
+			const now = new Date();
+			const hh = pad(now.getHours());
+			const mm = pad(now.getMinutes());
+			const ss = pad(now.getSeconds());
+			document.getElementById('clock').textContent = `${hh}:${mm}:${ss}`;
+		}
+		// Initialize and keep clock updated. Use a small interval for responsiveness.
+		updateClock();
+		setInterval(updateClock, 250);
+	</script>
+</body>
+</html>
