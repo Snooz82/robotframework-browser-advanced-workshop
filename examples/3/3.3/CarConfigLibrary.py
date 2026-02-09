@@ -1,3 +1,5 @@
+from functools import cached_property
+
 from assertionengine.assertion_engine import AssertionOperator  # type: ignore
 from Browser import Browser, ElementState, SupportedBrowsers  # type: ignore
 from robot.api.deco import keyword, library  # type: ignore
@@ -11,17 +13,12 @@ class CarConfigLibrary:
     ROBOT_LIBRARY_SCOPE = "GLOBAL"
     ROBOT_LIBRARY_VERSION = VERSION
 
-    def __init__(self, headless: bool = False):
-        self._browser_instance: Browser | None = None
-
-    @property
+    @cached_property
     def b(self) -> Browser:
-        if self._browser_instance is None:
-            try:
-                self._browser_instance = BuiltIn().get_library_instance("Browser")
-            except RuntimeError as err:
-                raise ImportError("You have to import the library 'Browser' as well.") from err
-        return self._browser_instance
+        try:
+            return BuiltIn().get_library_instance("Browser")
+        except RuntimeError as err:
+            raise ImportError("You have to import the library 'Browser' as well.") from err
 
     @keyword
     def open_car_config(self):
